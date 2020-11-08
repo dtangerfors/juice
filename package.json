@@ -2,7 +2,7 @@
   "name": "juice",
   "private": true,
   "description": "The new portfolio site for my company",
-  "version": "1.0",
+  "version": "1.0.0",
   "author": "Daniel Tängerfors",
   "dependencies": {
     "@prismicio/gatsby-source-prismic-graphql": "^3.6.13",
