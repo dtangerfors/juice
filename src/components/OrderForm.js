@@ -219,6 +219,7 @@ export default class OrderForm extends Component {
             onSubmit={this.handleSubmit}
             action="https://formspree.io/xwkrjlzz"
             method="POST"
+            id="calendar-order-form"
             >
                 <FormGroup>
                     <Fieldset>
