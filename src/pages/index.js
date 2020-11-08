@@ -1,22 +1,108 @@
 import React from "react"
-import { Link } from "gatsby"
+import { graphql } from "gatsby"
+import { RichText } from 'prismic-reactjs'
+import { motion, AnimatePresence } from "framer-motion"
+
+import { Helmet } from "react-helmet"
+import styled from "styled-components"
 
 import Layout from "../components/layout"
-import Image from "../components/image"
 import SEO from "../components/seo"
+import variables from "../assets/variables"
+import {transition, fadeUpList, fadeUp} from "../assets/animation"
 
-const IndexPage = () => (
-  <Layout>
-    <SEO title="Home" />
-    <h1>Hi people</h1>
-    <p>Welcome to your new Gatsby site.</p>
-    <p>Now go build something great.</p>
-    <div style={{ maxWidth: `300px`, marginBottom: `1.45rem` }}>
-      <Image />
-    </div>
-    <Link to="/page-2/">Go to page 2</Link> <br />
-    <Link to="/using-typescript/">Go to "Using TypeScript"</Link>
+import { PrimaryHeading, Paragraph } from "../components/typography"
+
+import Blob from "../components/Blob"
+import Button, {ButtonOutlined, ButtonWrapper, ButtonInnerWrap } from "../components/Button"
+import { Content } from "../components/containers"
+
+// Styled Components
+const TextWrapper = styled.header`
+  position: relative;
+  z-index: 2;
+  max-width: 110rem;
+  margin: 0 auto;
+`
+const PaddedContent = styled(Content)`
+  padding: ${variables.padding.xlarge} 0 ${variables.padding.large};
+`
+
+// Query 
+
+export const query = graphql`
+  {
+    prismic {
+      allHomepages {
+        edges {
+          node {
+            title
+            excerpt
+          }
+        }
+      }
+    }
+  }
+`
+
+const IndexPage = ({data}) => {
+
+  const prismicContent = data.prismic.allHomepages.edges[0]
+  if (!prismicContent) return null
+  const document = prismicContent.node
+
+  
+  return (
+  <Layout center>
+    <SEO title="Frontend developer based in Stockholm" />
+    <Helmet>
+      <link rel="stylesheet" href="https://use.typekit.net/xgf4jbu.css" />
+    </Helmet>
+    <AnimatePresence>
+    <PaddedContent>
+      <TextWrapper>
+        <PrimaryHeading
+          as={motion.h1}
+          initial="hidden"
+          animate="visible"
+          exit="exit"
+          variants={fadeUp}
+          transition={{ delay: 0.3, ...transition }}
+        >
+          {RichText.asText(document.title)}
+        </PrimaryHeading>
+        <Paragraph
+          style={{
+            fontSize: "2.4rem",
+            lineHeight: "3.6rem",
+          }}
+          as={motion.p}
+          initial="hidden"
+          animate="visible"
+          exit="exit"
+          variants={fadeUp}
+          transition={{ delay: 0.4, ...transition }}
+        >{RichText.asText(document.excerpt)}
+        </Paragraph>
+      </TextWrapper>
+      <ButtonWrapper
+        as={motion.div}
+        initial="hidden"
+        animate="visible"
+        variants={fadeUpList}
+      >
+        <ButtonInnerWrap as={motion.div} variants={fadeUp} initial="hidden" animate="visible" transition={{ delay: 0.1, ...transition }}>
+          <Button title="Projects" href="/work" />
+        </ButtonInnerWrap>
+
+        <ButtonInnerWrap as={motion.div} variants={fadeUp} initial="hidden" animate="visible" transition={{ delay: 0.2, ...transition }}>
+          <ButtonOutlined title="Calendars" href="/almanacka" />
+        </ButtonInnerWrap>
+      </ButtonWrapper>
+      <Blob />
+    </PaddedContent>
+    </AnimatePresence>
   </Layout>
-)
+)}
 
 export default IndexPage
