@@ -114,24 +114,8 @@ const Logo = styled.svg`
   }
 `
 
-const Layout = ({ center, children }) => {
-  const data = useStaticQuery(graphql`
-    query SiteTitleQuery {
-      site {
-        siteMetadata {
-          title
-        }
-      }
-    }
-  `)
-
-  return (
-    <>
-      <GlobalStyle />
-      <Header siteTitle={data.site.siteMetadata.title} />
-      <BodyContainer center={center}>
-        <MainWrapper>{children}</MainWrapper>
-        <Footer>
+export const FooterSection = () => (
+  <Footer>
           <Container>
             <FooterCol>
               <LogoLink to="/">
@@ -156,6 +140,26 @@ const Layout = ({ center, children }) => {
             <FooterText as={Link} to="/integritetspolicy">Integritetspolicy</FooterText>
           </Container>
         </Footer>
+)
+
+const Layout = ({ center, children }) => {
+  const data = useStaticQuery(graphql`
+    query SiteTitleQuery {
+      site {
+        siteMetadata {
+          title
+        }
+      }
+    }
+  `)
+
+  return (
+    <>
+      <GlobalStyle />
+      <Header siteTitle={data.site.siteMetadata.title} />
+      <BodyContainer center={center}>
+        <MainWrapper>{children}</MainWrapper>
+        <FooterSection />
       </BodyContainer>
     </>
   )
