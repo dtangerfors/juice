@@ -27,7 +27,7 @@ const PriceName = styled.div`
 
 const Price = styled.div`
   font-family: inherit;
-  font-size: ${props => (props.subTotal ? "1.6rem" : "inherit")};
+  font-size: ${props => (props.subTotal ? "16px" : "inherit")};
   font-weight: inherit;
 
   text-transform: uppercase;

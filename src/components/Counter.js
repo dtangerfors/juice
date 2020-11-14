@@ -2,6 +2,7 @@ import React, { Component } from "react"
 import styled from "styled-components"
 
 import variables from "../assets/variables"
+import screen from "../assets/mediaqueries"
 
 const OuterButton = styled.button`
     appearance: none;
@@ -18,11 +19,16 @@ const OuterButton = styled.button`
         opacity: 0.5;
         cursor: not-allowed;
     } 
+
+    @media ${screen.small} {
+      width: 5rem;
+      height: 5rem;
+    }
 `
 
 const InnerButton = styled.span`
     border: 1px solid ${variables.color.gray50};
-    border-radius: 1rem;
+    border-radius: 3rem;
     width: 100%;
     height: 100%;
     display: grid;
@@ -44,6 +50,10 @@ const CountNumber = styled.input`
     font-size: ${variables.typography.defaultSize};
     font-weight: 700;
     color: ${variables.color.gray30};
+
+    @media ${screen.small} {
+      width: 2rem;
+    }
 `
 
 class Button extends Component {

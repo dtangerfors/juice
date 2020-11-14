@@ -19,6 +19,8 @@ const Form = styled.form`
 
     @media ${screen.small} {
         padding: ${variables.padding.medium} ${variables.padding.small};
+        margin: 0 -${variables.padding.small};
+        width: calc(100% + ${variables.padding.medium});
     }
 `
 const Input = styled.input`
@@ -30,6 +32,7 @@ const Input = styled.input`
     margin-bottom: 4rem;
 
     font-family: inherit;
+    font-size: 16px;
     color: ${variables.color.gray30};
 
     border: none;
@@ -38,7 +41,7 @@ const Input = styled.input`
 
     &::placeholder {
         color: ${variables.color.gray50};
-        font-size: 1.1rem;
+        font-size: 11px;
     }
 
     &:-webkit-autofill {
@@ -49,7 +52,7 @@ const Input = styled.input`
 
 const Label = styled.label`
     color: ${variables.color.gray50};
-    font-size: 1.1rem;
+    font-size: 11px;
     padding: .5rem 1rem;
     display: block;
     -webkit-transition:all .3s;
@@ -66,7 +69,7 @@ const Label = styled.label`
 `
 
 const StaticLabel = styled.label`
-    font-size: 1.3rem;
+    font-size: 14px;
     font-weight: 700;
     line-height: 1.8rem;
     text-transform: uppercase;
@@ -88,11 +91,11 @@ const Fieldset = styled.div`
     justify-content: space-between;
     width: ${props => props.half ? '50%' : '100%'};
 
-    &:nth-of-type(odd) {
+    &:nth-of-type(even) {
         padding-left: ${props => props.half ? '.5rem' : '0'};
     }
 
-    &:nth-of-type(even) {
+    &:nth-of-type(odd) {
         padding-right: ${props => props.half ? '.5rem' : '0'};
     }
 `
@@ -143,8 +146,9 @@ export default class OrderForm extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            status: "",
+            status: '',
             customerName: '',
+            customerPhone: '',
             customerEmail: '',
             customerStreetNumber: '',
             customerPostalCode: '',
@@ -159,8 +163,9 @@ export default class OrderForm extends Component {
     }
 
     initialState = {
-        status: "",
+        status: '',
         customerName: '',
+        customerPhone: '',
         customerEmail: '',
         customerStreetNumber: '',
         customerPostalCode: '',
@@ -211,7 +216,7 @@ export default class OrderForm extends Component {
 
     render() {
 
-        let {customerEmail, customerName, customerPostalCode, customerPostalTown, customerStreetNumber, inCart, status} = this.state
+        let {customerEmail, customerName, customerPhone, customerPostalCode, customerPostalTown, customerStreetNumber, inCart, status} = this.state
 
         return (
             <Form 
@@ -243,20 +248,24 @@ export default class OrderForm extends Component {
                         <Label htmlFor="customerName">Ditt namn</Label>
                     </Fieldset>
                     <Fieldset>
-                        <Input id="customerEmail" name="customerEmail" type="email" placeholder="Din email" value={customerEmail} onChange={this.handleChange}/>
-                        <Label htmlFor="customerName">Din mail</Label>
+                        <Input id="customerPhone" name="customerPhone" type="tel" placeholder="Ditt telefonnummer (till betallänk & fraktavi)" value={customerPhone} onChange={this.handleChange}/>
+                        <Label htmlFor="customerPhone">Ditt telefonnummer</Label>
+                    </Fieldset>
+                    <Fieldset>
+                        <Input id="customerEmail" name="customerEmail" type="email" placeholder="Din email (för att skicka orderbekräftelse)" value={customerEmail} onChange={this.handleChange}/>
+                        <Label htmlFor="customerEmail">Din mail</Label>
                     </Fieldset>
                     <Fieldset>
                         <Input id="customerStreetNumber" name="customerStreetNumber" type="text" placeholder="Postadress" value={customerStreetNumber} onChange={this.handleChange}/>
-                        <Label htmlFor="customerName">Postadress</Label>
+                        <Label htmlFor="customerStreetNumber">Postadress</Label>
                     </Fieldset>
                     <Fieldset half>
                         <Input id="customerPostalCode" name="customerPostalCode" type="text" placeholder="Postnummer" value={customerPostalCode} onChange={this.handleChange}/>
-                        <Label htmlFor="customerName">Postnummer</Label>
+                        <Label htmlFor="customerPostalCode">Postnummer</Label>
                     </Fieldset>
                     <Fieldset half>
                         <Input id="customerPostalTown" name="customerPostalTown" type="text" placeholder="Stad" value={customerPostalTown} onChange={this.handleChange}/>
-                        <Label htmlFor="customerName">Stad</Label>
+                        <Label htmlFor="customerPostalTown">Stad</Label>
                     </Fieldset>
                 </FormGroup>
                 <FormGroup style={{
