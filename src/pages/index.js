@@ -17,6 +17,8 @@ import Blob from "../components/Blob"
 import Button, {ButtonOutlined, ButtonWrapper, ButtonInnerWrap } from "../components/Button"
 import { Content } from "../components/containers"
 
+import meta_card from "../images/juice-meta-card.jpg"
+
 // Styled Components
 const TextWrapper = styled.header`
   position: relative;
@@ -56,8 +58,10 @@ const IndexPage = ({data}) => {
   <Layout center>
     <SEO title="Frontend developer based in Stockholm" />
     <Helmet>
-      <link rel="stylesheet" href="https://use.typekit.net/xgf4jbu.css" />
-    </Helmet>
+      <link rel="stylesheet" href="https://use.typekit.net/xgf4jbu.css"/>
+      <meta property="og:image" content={meta_card}></meta>
+      <meta property="twitter:image" content={meta_card}></meta>
+      </Helmet>
     <AnimatePresence>
     <PaddedContent>
       <TextWrapper>

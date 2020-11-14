@@ -24,6 +24,7 @@ import icon_calendar from "../images/icons/icon-calendar.svg"
 import icon_pin from "../images/icons/icon-pin.svg"
 import icon_layer from "../images/icons/icon-layer.svg"
 
+import meta_card from "../images/almanacka-meta-card.jpg"
 
 const transition = {
     duration: 5,
@@ -229,9 +230,33 @@ export default () => {
     return(
         <>
         <Helmet>
-            <link rel="stylesheet" href="https://use.typekit.net/xgf4jbu.css" />
-            <title> Gotland &amp; Fårö Almanackor 2021 | Daniel Tängerfors</title>
-        </Helmet>
+        <link rel="stylesheet" href="https://use.typekit.net/xgf4jbu.css" />
+        <title> Gotland &amp; Fårö Almanackor 2021 | Daniel Tängerfors</title>
+
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://dtangerfors.se/almanacka" />
+        <meta
+          property="og:title"
+          content="Fårö &amp; Gotland 2021 Almanackor"
+        />
+        <meta
+          property="og:description"
+          content="Helårsalmanackor för 2021 med motiv från Fårö eller Gotland. Limiterad upplaga – köp ditt ex nu!"
+        />
+        <meta property="og:image" content={meta_card} />
+
+        <meta property="twitter:card" content="summary_large_image" />
+        <meta property="twitter:url" content="https://dtangerfors.se/almanacka" />
+        <meta
+          property="twitter:title"
+          content="Fårö &amp; Gotland 2021 Almanackor"
+        />
+        <meta
+          property="twitter:description"
+          content="Helårsalmanackor för 2021 med motiv från Fårö eller Gotland. Limiterad upplaga – köp ditt ex nu!"
+        />
+        <meta property="twitter:image" content={meta_card}></meta>
+      </Helmet>
         <GlobalStyle />
         <BodyContainer>
             <FixedHeader>
