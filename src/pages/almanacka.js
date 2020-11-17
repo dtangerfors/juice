@@ -351,7 +351,7 @@ export default () => {
                         <SplitContent>
                             <H2>Beställ ditt exemplar idag!</H2>
                             <Paragraph>Lägg din beställning genom att fylla i antal almanackor du önskar samt dina uppgifter.</Paragraph>
-                            <Information>Betalning sker genom faktura med 14 dagars betalningsvillkor. Din beställning bekräftas genom mitt bekräftelsemail – har du önskemål om annan leveransadress eller dylikt kan detta ordnas i nästa steg.</Information>
+                            <Information>Betalning sker genom betallänk via sms eller email. Välj själv hur du vill betala, Swish, faktura, delbetalning eller banköverföring. Din beställning bekräftas genom mitt bekräftelsemail – har du önskemål om annan leveransadress eller dylikt kan detta ordnas i nästa steg.</Information>
                             <Information secondary>Obs! På grund av rådande pandemi skickas almanackorna endast genom post.</Information>
                         </SplitContent>
                         <FormSplit>
