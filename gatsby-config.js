@@ -3,9 +3,11 @@ module.exports = {
     title: `Daniel Tängerfors`,
     description: `A driven and multifaceted frontend developer with a background in design and photography.`,
     author: `@dtangerfors`,
+    siteUrl: `https://dtangerfors.se/`,
   },
   plugins: [
     `gatsby-plugin-react-helmet`,
+    `gatsby-plugin-sitemap`,
     {
       resolve: `gatsby-source-filesystem`,
       options: {
