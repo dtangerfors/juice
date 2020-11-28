@@ -248,7 +248,7 @@ export default class OrderForm extends Component {
                         <Label htmlFor="customerName">Ditt namn</Label>
                     </Fieldset>
                     <Fieldset>
-                        <Input id="customerPhone" name="customerPhone" type="tel" placeholder="Ditt telefonnummer (till betallänk & fraktavi)" value={customerPhone} onChange={this.handleChange}/>
+                        <Input id="customerPhone" name="customerPhone" type="tel" placeholder="Ditt telefonnummer (för att skicka fraktavi)" value={customerPhone} onChange={this.handleChange}/>
                         <Label htmlFor="customerPhone">Ditt telefonnummer</Label>
                     </Fieldset>
                     <Fieldset>
