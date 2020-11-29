@@ -8,6 +8,7 @@ import screen from "../assets/mediaqueries"
 import Counter from "./Counter"
 import PriceSection from "./PriceSection"
 
+import ThanksPopup from "../components/ThanksPopup"
 
 
 const Form = styled.form`
@@ -278,7 +279,7 @@ export default class OrderForm extends Component {
                 }}>
                     <PriceSection inCart={inCart}/>
                 </FormGroup>
-                {status === "SUCCESS" ? <p style={{textAlign: 'center', width: '100%'}}>Tack för din beställning! :)</p> : <Submit value="Lägg beställning" />}
+                {status === "SUCCESS" ? <ThanksPopup/> : <Submit value="Lägg beställning" />}
                 {status === "ERROR" && <p>Ooops! Ett fel uppstod, försök igen snart.</p>}
             </Form>
         )
