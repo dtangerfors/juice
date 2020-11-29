@@ -231,6 +231,8 @@ export default () => {
         <>
         <Helmet>
         <link rel="stylesheet" href="https://use.typekit.net/xgf4jbu.css" />
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"></link>
         <title> Gotland &amp; Fårö Almanackor 2021 | Daniel Tängerfors</title>
 
         <meta property="og:type" content="website" />
@@ -256,6 +258,7 @@ export default () => {
           content="Helårsalmanackor för 2021 med motiv från Fårö eller Gotland. Limiterad upplaga – köp ditt ex nu!"
         />
         <meta property="twitter:image" content={meta_card}></meta>
+
       </Helmet>
         <GlobalStyle />
         <BodyContainer>
