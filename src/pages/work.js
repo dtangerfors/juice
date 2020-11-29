@@ -14,8 +14,7 @@ import { linkResolver } from "../utils/linkResolver"
 
 import {
   PrimaryHeading,
-  Paragraph,
-  Lead
+  Paragraph
 } from "../components/typography"
 import {
   HeaderWrapper
@@ -131,10 +130,6 @@ const Project = ({ project }) => (
     <Title><ButtonLinkArrow>&rarr;</ButtonLinkArrow>{RichText.asText(project.title)}</Title>
     <Subtitle>{RichText.asText(project.subtitle)}</Subtitle>
   </WorkLink>
-)
-
-const ProjectsComing = () => (
-  <Lead>Projects coming, please return in a moment</Lead>
 )
 
 const ProjectSection = ({ projects }) => {
