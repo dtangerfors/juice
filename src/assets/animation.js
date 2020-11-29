@@ -24,6 +24,18 @@ const fadeUp = {
     opacity: 0,
   },
 }
+
+const fadeUpLarge = {
+  visible: {
+    opacity: 1,
+    y: [200, -3, 0],
+  },
+  hidden: { opacity: 0, y: 200 },
+  exit: {
+    opacity: 0,
+  },
+}
+
 const fadeRight = {
   visible: {
     opacity: 1,
@@ -67,4 +79,4 @@ const item = {
   hidden: { opacity: 0, y: 50 },
 }
 
-export {transition, fadeIn, fadeUp, fadeUpList, item, fadeUpItem, fadeRight}
+export {transition, fadeIn, fadeUp, fadeUpList, item, fadeUpItem, fadeRight, fadeUpLarge}
