@@ -5,26 +5,26 @@ import { motion } from "framer-motion"
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from 'react-responsive-carousel';
 
-import { SecondaryHeading, Paragraph, Information } from "../components/typography"
-import OrderForm from "../components/OrderForm"
-import CrossfadeHeader from "../components/CrossfadeHeader"
-import {FooterSection } from "../components/layout"
+import { SecondaryHeading, Paragraph, Information } from "../../components/typography"
+import OrderForm from "../../components/OrderForm"
+import CrossfadeHeader from "../../components/CrossfadeHeader"
+import {FooterSection } from "../../components/layout"
 
-import GlobalStyle from "../globalStyle"
-import variables from "../assets/variables";
-import screen from "../assets/mediaqueries"
+import GlobalStyle from "../../globalStyle"
+import variables from "../../assets/variables";
+import screen from "../../assets/mediaqueries"
 
-import gotland_preview from "../images/gotland-calendar2021.jpg"
-import gotland_preview1 from "../images/gotland-images-1.jpg"
-import gotland_preview2 from "../images/gotland-images-2.jpg"
-import faro_preview from "../images/faro-calendar2021.jpg"
-import faro_preview1 from "../images/faro-images-1.jpg"
-import faro_preview2 from "../images/faro-images-2.jpg"
-import icon_calendar from "../images/icons/icon-calendar.svg"
-import icon_pin from "../images/icons/icon-pin.svg"
-import icon_layer from "../images/icons/icon-layer.svg"
+import gotland_preview from "../../images/gotland-calendar2021.jpg"
+import gotland_preview1 from "../../images/gotland-images-1.jpg"
+import gotland_preview2 from "../../images/gotland-images-2.jpg"
+import faro_preview from "../../images/faro-calendar2021.jpg"
+import faro_preview1 from "../../images/faro-images-1.jpg"
+import faro_preview2 from "../../images/faro-images-2.jpg"
+import icon_calendar from "../../images/icons/icon-calendar.svg"
+import icon_pin from "../../images/icons/icon-pin.svg"
+import icon_layer from "../../images/icons/icon-layer.svg"
 
-import meta_card from "../images/almanacka-meta-card.jpg"
+import meta_card from "../../images/almanacka-meta-card.jpg"
 
 const transition = {
     duration: 5,
@@ -231,8 +231,6 @@ export default () => {
         <>
         <Helmet>
         <link rel="stylesheet" href="https://use.typekit.net/xgf4jbu.css" />
-        <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
-      rel="stylesheet"></link>
         <title> Gotland &amp; Fårö Almanackor 2021 | Daniel Tängerfors</title>
 
         <meta property="og:type" content="website" />

@@ -195,7 +195,8 @@ export default class OrderForm extends Component {
         if (xhr.readyState !== XMLHttpRequest.DONE) return;
         if (xhr.status === 200) {
             this.setState(() => this.initialState)
-            this.setState({ status: "SUCCESS" });
+            //this.setState({ status: "SUCCESS" });
+            window.location.replace("/almanacka/thankyou");
         } else {
             this.setState({ status: "ERROR" });
         }
