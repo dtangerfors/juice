@@ -328,6 +328,7 @@ export default () => {
                     <SplitWrapper isReversed>
                         <SplitContent>
                             <H2>Gotland 2021</H2>
+                            <Paragraph>Tillfälligt slut i lager!</Paragraph>
                             <Paragraph secondary>Almanacka med säsongsbilder runtom Gotland. Såväl kända som mindre kända motiv från Gotland och dess socknar.</Paragraph>
                         </SplitContent>
                         <SplitImage as="div">
