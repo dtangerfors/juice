@@ -1,4 +1,4 @@
-import React, {useRef} from "react"
+import React from "react"
 import styled from "styled-components"
 import { graphql } from "gatsby"
 import { RichText } from "prismic-reactjs"
@@ -12,7 +12,7 @@ import { Image, Text, Carousel, Parallax } from "../components/slices"
 
 import { transition, fadeUpList, fadeIn, fadeUp } from "../assets/animation"
 
-import { PrimaryHeading, Paragraph, Lead } from "../components/typography"
+import { PrimaryHeading, Paragraph, Lead, Icon } from "../components/typography"
 
 import variables from "../assets/variables"
 
@@ -161,8 +161,23 @@ const SliceItems = ({ slices }) => {
   })
 }
 
+function DemoLink(props) {
+  if (!props.link) {
+    return null
+  }
+
+  return (
+    <motion.li
+      variants={fadeUp}
+      initial="hidden"
+      animate="visible"
+      transition={{ delay: 0.3, ...transition }}><a href={props.link.url} target="_blank" rel="noopener noreferrer">Demo <Icon className="material-icons">
+      open_in_new
+      </Icon></a></motion.li>
+  )
+}
+
 const SingleProjectPage = ({ data }) => {
-  const figureRef = useRef();
   const project = data.prismic.allProjects.edges.slice(0, 1).pop()
   if (!project) return null
 
@@ -176,13 +191,8 @@ const SingleProjectPage = ({ data }) => {
     categories
   } = project.node
 
-  const offsetFromRight = () => {
-    figureRef.current.getBoundingClientRect()
-  }
- 
-  console.log(offsetFromRight)
-
   return (
+
     <Layout>
       <SEO title={RichText.asText(title)} />
       <ProjectHeader>
@@ -204,12 +214,9 @@ const SingleProjectPage = ({ data }) => {
                 initial="hidden"
                 animate="visible"
                 transition={{ delay: 0.1, ...transition }}>{categories}</motion.li>
-
-              <motion.li
-              variants={fadeUp}
-              initial="hidden"
-              animate="visible"
-              transition={{ delay: 0.3, ...transition }}><a href={project_demo.url} target="_blank" rel="noopener noreferrer">Demo</a></motion.li>
+              <DemoLink link={project_demo}/>
+            
+              
             </AdditionalInfo>
             <PrimaryHeading
               as={motion.h1}
@@ -251,7 +258,6 @@ const SingleProjectPage = ({ data }) => {
           animate="visible"
           variants={fadeIn}
           transition={{ delay: 0.1, ...transition }}
-          ref={figureRef}
         >
           <FigureContainer>
             <FeaturedImage src={featured_image.url} alt={featured_image.alt} />

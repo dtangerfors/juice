@@ -65,7 +65,6 @@ const GlobalStyle = createGlobalStyle`
     background: #ff5978;
     box-shadow: inset 1rem 0 3rem #ae5ae0, inset -1rem 0 3rem #ffcb00, inset -1rem .5rem 1rem #ff5500;
   }
-
   
 `
 

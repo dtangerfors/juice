@@ -10,6 +10,7 @@ import PropTypes from "prop-types"
 import { useStaticQuery, graphql, Link } from "gatsby"
 import styled from "styled-components"
 import { lighten } from "polished"
+import { Helmet } from "react-helmet"
 
 import screen from "../assets/mediaqueries"
 import variables from "../assets/variables"
@@ -156,6 +157,10 @@ const Layout = ({ center, children }) => {
   return (
     <>
       <GlobalStyle />
+      <Helmet>
+      <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet" />
+      </Helmet>
       <Header siteTitle={data.site.siteMetadata.title} />
       <BodyContainer center={center}>
         <MainWrapper>{children}</MainWrapper>

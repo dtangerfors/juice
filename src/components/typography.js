@@ -143,6 +143,9 @@ const StyledListItem = styled.li`
   }
 `
 
+const Icon = styled.span`
+  font-size: .7em !important;
+`
 
 export {
   PrimaryHeading,
@@ -154,5 +157,6 @@ export {
   Information, 
   TextLink,
   StyledUl,
-  StyledListItem
+  StyledListItem, 
+  Icon
 }
