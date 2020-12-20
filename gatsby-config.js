@@ -40,6 +40,8 @@ module.exports = {
       resolve: '@prismicio/gatsby-source-prismic-graphql',
       options: {
         repositoryName: 'dtangerforsportfolio',
+        path: '/preview',
+        previews: true,
         pages: [{ // (optional, builds pages dynamically)
           type: 'project',         // TypeName from prismic
           match: '/work/:uid',  // Pages will be generated under this pattern

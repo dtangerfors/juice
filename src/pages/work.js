@@ -34,6 +34,7 @@ const WorkWrapper = styled.section`
   }
 `
 const Work = styled(motion.div)`
+  position: relative;
   display: block;
   grid-column: span 4;
   text-decoration: none;
@@ -58,6 +59,11 @@ const WorkLink = styled(Link)`
     background-color: transparent;
     box-shadow: none;
   }
+`
+const Figure = styled.figure`
+  position: relative;
+  margin: 0;
+  padding: 0;
 `
 
 const WorkImage = styled.img`
@@ -97,6 +103,20 @@ const Subtitle = styled(Paragraph)`
   font-size: 1.4rem;
 `
 
+const ComingSoon = styled.span`
+  position: absolute;
+  bottom: 1rem;
+  left: 1rem;
+  padding: .5rem .8rem;
+  background-color: ${variables.color.black};
+  color: ${variables.color.white};
+  font-family: ${variables.typography.bodyFont};
+  font-size: 1.2rem;
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: .05em;
+`
+
 
 // Query
 export const query = graphql`
@@ -109,6 +129,7 @@ export const query = graphql`
             subtitle
             thumbnail
             _linkType
+            work_in_progress
             _meta {
               id
               uid
@@ -121,16 +142,39 @@ export const query = graphql`
   }
 `
 
-const Project = ({ project }) => (
-  <WorkLink to={linkResolver(project._meta)}>
-    <WorkImage
-      alt={project.thumbnail.alt}
-      src={project.thumbnail.url}
-    />
-    <Title><ButtonLinkArrow>&rarr;</ButtonLinkArrow>{RichText.asText(project.title)}</Title>
-    <Subtitle>{RichText.asText(project.subtitle)}</Subtitle>
-  </WorkLink>
-)
+const Project = ({ project }) => {
+  if (project.work_in_progress) {
+    return (
+      <div>
+        <Figure>
+          <WorkImage
+            alt={project.thumbnail.alt}
+            src={project.thumbnail.url}
+          />
+        </Figure>
+        <Title><ButtonLinkArrow>&rarr;</ButtonLinkArrow>{RichText.asText(project.title)}</Title>
+        <Subtitle>{RichText.asText(project.subtitle)}</Subtitle>
+      </div>
+    )
+  } else {
+    return (
+      <WorkLink to={linkResolver(project._meta)}>
+        <Figure>
+          <WorkImage
+            alt={project.thumbnail.alt}
+            src={project.thumbnail.url}
+          />
+          <ComingSoon>Coming Soon</ComingSoon>
+        </Figure>
+        <Title><ButtonLinkArrow>&rarr;</ButtonLinkArrow>{RichText.asText(project.title)}</Title>
+        <Subtitle>{RichText.asText(project.subtitle)}</Subtitle>
+      </WorkLink>
+    )
+  }
+}
+
+
+
 
 const ProjectSection = ({ projects }) => {
   if (!projects) return null
