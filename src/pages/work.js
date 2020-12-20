@@ -64,6 +64,7 @@ const Figure = styled.figure`
   position: relative;
   margin: 0;
   padding: 0;
+  font-size: 0;
 `
 
 const WorkImage = styled.img`
@@ -151,6 +152,7 @@ const Project = ({ project }) => {
             alt={project.thumbnail.alt}
             src={project.thumbnail.url}
           />
+          <ComingSoon>Coming Soon</ComingSoon>
         </Figure>
         <Title><ButtonLinkArrow>&rarr;</ButtonLinkArrow>{RichText.asText(project.title)}</Title>
         <Subtitle>{RichText.asText(project.subtitle)}</Subtitle>
@@ -164,7 +166,6 @@ const Project = ({ project }) => {
             alt={project.thumbnail.alt}
             src={project.thumbnail.url}
           />
-          <ComingSoon>Coming Soon</ComingSoon>
         </Figure>
         <Title><ButtonLinkArrow>&rarr;</ButtonLinkArrow>{RichText.asText(project.title)}</Title>
         <Subtitle>{RichText.asText(project.subtitle)}</Subtitle>
