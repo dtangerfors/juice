@@ -353,8 +353,7 @@ export default () => {
                         <SplitContent>
                             <H2>Beställ ditt exemplar idag!</H2>
                             <Paragraph>Lägg din beställning genom att fylla i antal almanackor du önskar samt dina uppgifter.</Paragraph>
-                            <Information>Betalning sker genom faktura med 14 dagars betalningsvillkor. Faktura skickas per mail.</Information>
-                            <Information secondary>Obs! På grund av rådande pandemi skickas almanackorna endast genom post.</Information>
+                            <Information>Betalning sker genom faktura med 14 dagars betalningsvillkor. Faktura skickas per mail. Obs! På grund av rådande pandemi skickas almanackorna endast genom post.</Information>
                         </SplitContent>
                         <FormSplit>
                             <OrderForm />

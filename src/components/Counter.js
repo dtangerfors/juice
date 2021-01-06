@@ -13,7 +13,7 @@ const OuterButton = styled.button`
 
     width: 4rem;
     height: 4rem;
-    padding: 1rem;
+    padding: .5rem;
 
     &:disabled {
         opacity: 0.5;
@@ -33,6 +33,8 @@ const InnerButton = styled.span`
     height: 100%;
     display: grid;
     place-items: center;
+    font-size: 20px;
+    line-height: 1;
 `
 
 const CounterWrap = styled.div`
@@ -47,13 +49,11 @@ const CountNumber = styled.input`
     width: 4rem;
     padding: 0;
     text-align: center;
-    font-size: ${variables.typography.defaultSize};
+    font-size: 16px;
     font-weight: 700;
     color: ${variables.color.gray30};
 
-    @media ${screen.small} {
-      width: 2rem;
-    }
+    
 `
 
 class Button extends Component {

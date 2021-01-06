@@ -12,7 +12,7 @@ const PriceField = styled.div`
 
   color: ${props =>
     props.subTotal ? variables.color.green : variables.color.gray50};
-  font-size: 1.3rem;
+  font-size: 13px;
   font-weight: ${props => (props.subTotal ? 700 : 400)};
   line-height: 1.8rem;
 `
@@ -27,7 +27,7 @@ const PriceName = styled.div`
 
 const Price = styled.div`
   font-family: inherit;
-  font-size: ${props => (props.subTotal ? "16px" : "inherit")};
+  font-size: ${props => (props.subTotal ? "20px" : "inherit")};
   font-weight: inherit;
 
   text-transform: uppercase;

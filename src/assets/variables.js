@@ -10,8 +10,9 @@ const colors = {
     white: '#F7F7F7',
     black: '#111111',
     gray30: '#333',
-    gray50: '#808080',
-    green: '#AAAE8C',
+    gray50: '#595959',
+    gray80: '#dedede',
+    green: '#585b40',
     orange: '#C4865D'
 }
 
