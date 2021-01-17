@@ -5,7 +5,7 @@ import { motion } from "framer-motion"
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from 'react-responsive-carousel';
 
-import { SecondaryHeading, Paragraph, Information } from "../../components/typography"
+import { SecondaryHeading, TertiaryHeading, Paragraph, Information } from "../../components/typography"
 import OrderForm from "../../components/OrderForm"
 import CrossfadeHeader from "../../components/CrossfadeHeader"
 import {FooterSection } from "../../components/layout"
@@ -220,6 +220,15 @@ const H2 = styled(SecondaryHeading)`
     font-weight: 300;
 `
 
+const H3 = styled(TertiaryHeading)`
+    font-family: freight-display-pro, serif;
+    font-weight: 300;
+
+    & span {
+        text-decoration: line-through;
+    }
+`
+
 const list = {
     hidden: { opacity: 0, y: 0, x: '-50%' },
     show: { opacity: [0, 0, 1, 1, 0], y: [0, 0, 0, 0, 50], x: '-50%' }
@@ -305,6 +314,7 @@ export default () => {
                     <SplitWrapper>
                         <SplitContent>
                             <H2>Fårö 2021</H2>
+                            <H3><span>190 kr</span> 120 kr</H3>
                             <Paragraph secondary>Med både kända och mindre kända motiv från Fårö har du här en fin almanacka fylld med säsongsbilder från Fårös säregna natur.</Paragraph>
                         </SplitContent>
                         <SplitImage as="div">
@@ -328,6 +338,7 @@ export default () => {
                     <SplitWrapper isReversed>
                         <SplitContent>
                             <H2>Gotland 2021</H2>
+                            <H3><span>190 kr</span> 120 kr</H3>
                             <Paragraph>Tillfälligt slut i lager!</Paragraph>
                             <Paragraph secondary>Almanacka med säsongsbilder runtom Gotland. Såväl kända som mindre kända motiv från Gotland och dess socknar.</Paragraph>
                         </SplitContent>

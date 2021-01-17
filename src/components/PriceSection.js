@@ -48,7 +48,7 @@ export default class PriceSection extends Component {
       shipping: 0,
       tax: 0,
       taxRate: 0.2,
-      price: 190,
+      price: 120,
       inCart: props.inCart,
     }
   }
