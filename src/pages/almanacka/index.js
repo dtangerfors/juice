@@ -339,7 +339,7 @@ export default () => {
                         <SplitContent>
                             <H2>Gotland 2021</H2>
                             <H3><span>190 kr</span> 120 kr</H3>
-                            <Paragraph>Tillfälligt slut i lager!</Paragraph>
+                            <Paragraph>Inkommande – skickas ut så snart de finns i lager. (&lt;2 veckor)</Paragraph>
                             <Paragraph secondary>Almanacka med säsongsbilder runtom Gotland. Såväl kända som mindre kända motiv från Gotland och dess socknar.</Paragraph>
                         </SplitContent>
                         <SplitImage as="div">
