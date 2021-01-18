@@ -8,15 +8,23 @@ import header_faro_small from "../images/preview-faro-800.jpg"
 
 const StyledImg = styled.picture`
   width: 100%;
-  position: relative;
+  height: 100%;
+  position: absolute;
+  bottom: 0;
+  left: 0;
   z-index: 1;
+  font-size: 0;
 
   & img {
     width: 100%;
+    height: 100%;
+    object-fit: cover;
   }
 
   & source {
     width: 100%;
+    height: 100%;
+    object-fit: cover;
   }
 `
 
@@ -56,7 +64,7 @@ export default class CrossfadeHeader extends Component {
 
     return (
       <StyledImg>
-        <source media="(max-width: 768px)" srcSet={image[currentImage].mobile} />
+        <source media="(max-width: 800px)" srcSet={image[currentImage].mobile} />
         <img src={image[currentImage].desktop} alt="Almanacka 2021" />
       </StyledImg>
     )

@@ -242,7 +242,7 @@ export default class OrderForm extends Component {
                         <StaticLabel htmlFor="faroTotal">Fårö 2021</StaticLabel>
                         <Counter incrementCart={this.incrementCart} decrementCart={this.decrementCart} status={status} name="faroTotal"/>
                     </InputWrapper>
-                    <InputWrapper>
+                    <InputWrapper style={{marginBottom: '1rem'}}>
                         <StaticLabel htmlFor="gotlandTotal">Gotland 2021</StaticLabel>
                         <Counter incrementCart={this.incrementCart} decrementCart={this.decrementCart} status={status} name="gotlandTotal"/>
                     </InputWrapper>

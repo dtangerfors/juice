@@ -1,7 +1,6 @@
 import React from "react";
 import styled from "styled-components"
 import { Helmet } from "react-helmet"
-import { motion } from "framer-motion"
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from 'react-responsive-carousel';
 
@@ -26,13 +25,6 @@ import icon_layer from "../../images/icons/icon-layer.svg"
 
 import meta_card from "../../images/almanacka-meta-card.jpg"
 
-const transition = {
-    duration: 5,
-    ease: "easeInOut",
-    loop: Infinity,
-    repeatDelay: 5,
-  };
-
 const BodyContainer = styled.div`
   min-height: 100vh;
   background-color: #f7f7f7;
@@ -46,72 +38,95 @@ const BodyContainer = styled.div`
 
 const FixedHeader = styled.header`
     width: 100vw;
+    height: 80vh;
     position: relative;
-    display: grid;
-    align-items: center;
-    height: 50vw;
-    overflow: hidden;
+    padding: 5vw 5vw 0;
+    background-color: #FFF;
+
+    @media ${screen.darkMode} {
+        background-color: #111;
+    }
 
     @media ${screen.medium} {
         height: auto;
     }
 `
-
-const TitleWrap = styled(motion.div)`
-    text-align: center;
-    z-index: 2;
-    top: 10vw;
-    left: 50%;
-    transform: translateX(-50%);
+const HeaderContent = styled.div`
+    position: relative;
+    height: 100%;
     width: 100%;
-    position: absolute;
+    display: grid;
+    align-items: flex-end;
+    overflow: hidden;
+`
+
+const TitleWrap = styled.div`
+    text-align: left;
+    z-index: 2;
+    width: 100%;
+    position: relative;
+    padding: 3vw;
+    background-image: linear-gradient(to top, rgba(0,0,0, .6), rgba(0,0,0, 0));
 
     @media ${screen.medium} {
-        top: 15vw;
+        padding: 30vh 2rem 3rem;
     }
 `
 
-
 const Title = styled.h1`
+    display: block;
     font-family: freight-display-pro, serif;
     font-weight: 300;
-    font-size: 12rem;
-    text-transform: uppercase;
+    font-size: 7rem;
     padding: 0;
+    margin: 0 0 2rem;
     position: relative;
-    line-height: 12rem;
+    line-height: 1.4;
+    border-bottom: 1px solid #FFF;
+    color: #FFF;
 
-    &::before {
-        content: '20';
-        font-size: .5em;
-        line-height: inherit;
-        vertical-align: top;
-        margin-right: 1rem;
+    @media ${screen.large} {
+        font-size: 4rem;
     }
+`
 
-    &::after {
-        content: '21';
-        font-size: .5em;
-        line-height: inherit;
-        vertical-align: top;
-        margin-left: 1rem;
-    }
-
-    @media ${screen.small} {
-        font-size: 7rem;
-        line-height: 7rem;
-    }
+const SubContent = styled.div`
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: wrap;
 `
 
 const Subtitle = styled.p`
     font-family: freight-display-pro, serif;
     font-weight: 300;
-    font-size: 2rem;
+    font-size: 2.5rem;
     font-style: italic;
+    color: #FFF;
+    padding: 0 5rem 3rem 0; 
 
     @media ${screen.small} {
-        font-size: 3vw;
+        padding: 0 0 3rem 0;
     }
+`
+
+const Button = styled.a`
+text-decoration: none;
+  color: ${variables.color.black};
+  font-size: ${variables.typography.defaultSize};
+  font-family: ${variables.typography.bodyFont};
+  border: 1px solid #FFF;
+  border-radius: 3rem;
+  padding: 1.2rem 4rem;
+  display: inline-block;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  line-height: 1;
+  background-color: #FFF;
+
+  &:hover {
+      background-color: #dedede;
+  }
 `
 
 const Section = styled.section`
@@ -270,23 +285,17 @@ export default () => {
         <GlobalStyle />
         <BodyContainer>
             <FixedHeader>
-                <TitleWrap
-                    variants={list}
-                    initial="hidden"
-                    animate="show"
-                    transition={transition}>
-                    <Title>Gotland</Title>
-                    <Subtitle>Helårsalmanacka med vackra bilder från Gotland</Subtitle>
-                </TitleWrap>
-                <TitleWrap
-                    variants={list}
-                    initial="hidden"
-                    animate="show"
-                    transition={{delay: 5, ...transition}}>
-                    <Title>Fårö</Title>
-                    <Subtitle>Helårsalmanacka med vackra bilder från Fårö</Subtitle>
+                <HeaderContent>
+                <TitleWrap>
+                    <Title>Gotland & Fårö Almanacka 2021</Title>
+                    <SubContent>
+                    <Subtitle>Helårsalmanacka med vackra bilder från Gotland & Fårö. Köp ditt ex nu för 120kr.</Subtitle>
+                    <Button title="Beställ nu" href="#order">Beställ nu</Button>
+                    </SubContent>
+                    
                 </TitleWrap>
                 <CrossfadeHeader />
+                </HeaderContent>
             </FixedHeader>
             <Section>
                 <Container>
@@ -358,7 +367,7 @@ export default () => {
                     </SplitWrapper>
                 </Container>
             </Section>
-            <Section gray>
+            <Section gray id="order">
                 <Container>
                     <SplitWrapper>
                         <SplitContent>
