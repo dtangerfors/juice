@@ -71,7 +71,7 @@ const IndexPage = ({data}) => {
           animate="visible"
           exit="exit"
           variants={fadeUp}
-          transition={{ delay: 0.3, ...transition }}
+          transition={{ delay: 1, ...transition }}
         >
           {RichText.asText(document.title)}
         </PrimaryHeading>
@@ -85,7 +85,7 @@ const IndexPage = ({data}) => {
           animate="visible"
           exit="exit"
           variants={fadeUp}
-          transition={{ delay: 0.4, ...transition }}
+          transition={{ delay: 1.2, ...transition }}
         >{RichText.asText(document.excerpt)}
         </Paragraph>
       </TextWrapper>
@@ -95,11 +95,11 @@ const IndexPage = ({data}) => {
         animate="visible"
         variants={fadeUpList}
       >
-        <ButtonInnerWrap as={motion.div} variants={fadeUp} initial="hidden" animate="visible" transition={{ delay: 0.1, ...transition }}>
+        <ButtonInnerWrap as={motion.div} variants={fadeUp} initial="hidden" animate="visible" transition={{ delay: 0.7, ...transition }}>
           <Button title="Projects" href="/work" />
         </ButtonInnerWrap>
 
-        <ButtonInnerWrap as={motion.div} variants={fadeUp} initial="hidden" animate="visible" transition={{ delay: 0.2, ...transition }}>
+        <ButtonInnerWrap as={motion.div} variants={fadeUp} initial="hidden" animate="visible" transition={{ delay: 0.8, ...transition }}>
           <ButtonOutlined title="Calendars" href="/almanacka" />
         </ButtonInnerWrap>
       </ButtonWrapper>

@@ -244,10 +244,10 @@ const H3 = styled(TertiaryHeading)`
     }
 `
 
-const list = {
-    hidden: { opacity: 0, y: 0, x: '-50%' },
-    show: { opacity: [0, 0, 1, 1, 0], y: [0, 0, 0, 0, 50], x: '-50%' }
-  }
+// const list = {
+//     hidden: { opacity: 0, y: 0, x: '-50%' },
+//     show: { opacity: [0, 0, 1, 1, 0], y: [0, 0, 0, 0, 50], x: '-50%' }
+//   }
 
 export default () => {
 

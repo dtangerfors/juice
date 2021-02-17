@@ -138,12 +138,12 @@ const Morph = styled.div`
     height: 100%;
     background: url(${aboutImage});
     background-size: cover;
-
+    border-radius: 63% 37% 54% 46% / 55% 48% 52% 45%;
     transform-origin: 50% 50%;
     transform-style: preserve-3d;
     perspective: 1000px;
-    animation: ${blobTransform} 50s ease-in-out infinite both alternate,
-      ${blobMovement} 40s ease-in-out infinite both;
+    /* animation: ${blobTransform} 50s ease-in-out infinite both alternate,
+      ${blobMovement} 40s ease-in-out infinite both; */
   }
 `
 
