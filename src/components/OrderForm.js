@@ -76,13 +76,13 @@ const StaticLabel = styled.label`
     align-self: center;
 
     &::after {
-        content: ' | 120 kr/st';
+        content: ' | 100 kr/st';
         color: ${variables.color.gray50};
         text-transform: lowercase;
 
         @media only screen and (max-width: 400px) {
             display: block;
-            content: '120 kr/st';
+            content: '100 kr/st';
             line-height: 1.2em;
         }
     }

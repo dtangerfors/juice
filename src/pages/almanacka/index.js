@@ -289,7 +289,7 @@ export default () => {
                 <TitleWrap>
                     <Title>Gotland & Fårö Almanacka 2021</Title>
                     <SubContent>
-                    <Subtitle>Helårsalmanacka med vackra bilder från Gotland & Fårö. Köp ditt ex nu för 120kr.</Subtitle>
+                    <Subtitle>Helårsalmanacka med vackra bilder från Gotland & Fårö. Köp ditt ex nu för 100kr.</Subtitle>
                     <Button title="Beställ nu" href="#order">Beställ nu</Button>
                     </SubContent>
                     
@@ -323,7 +323,7 @@ export default () => {
                     <SplitWrapper>
                         <SplitContent>
                             <H2>Fårö 2021</H2>
-                            <H3><span>190 kr</span> 120 kr</H3>
+                            <H3><span>190 kr</span> 100 kr</H3>
                             <Paragraph secondary>Med både kända och mindre kända motiv från Fårö har du här en fin almanacka fylld med säsongsbilder från Fårös säregna natur.</Paragraph>
                         </SplitContent>
                         <SplitImage as="div">
@@ -347,8 +347,7 @@ export default () => {
                     <SplitWrapper isReversed>
                         <SplitContent>
                             <H2>Gotland 2021</H2>
-                            <H3><span>190 kr</span> 120 kr</H3>
-                            <Paragraph>Inkommande – skickas ut så snart de finns i lager. (&lt;2 veckor)</Paragraph>
+                            <H3><span>190 kr</span> 100 kr</H3>
                             <Paragraph secondary>Almanacka med säsongsbilder runtom Gotland. Såväl kända som mindre kända motiv från Gotland och dess socknar.</Paragraph>
                         </SplitContent>
                         <SplitImage as="div">
