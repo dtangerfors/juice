@@ -1,9 +1,11 @@
-exports.linkResolver = function linkResolver(doc) {
-    // Route for blog posts
-    if (doc.type === 'project') {
-        return '/work/' + doc.uid;
-    }
+const linkResolver = doc => {
+  // Route for projects
+  if (doc.type === "project") {
+    return "/work/" + doc.uid
+  }
 
-    // Homepage route fallback
-    return '/';
+  // Backup for all other types
+  return "/"
 }
+
+module.exports = linkResolver
