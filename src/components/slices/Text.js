@@ -25,5 +25,5 @@ const TextWrapper = styled.div`
 `
 
 export default ({ slice }) => {
-  return <TextWrapper>{RichText.render(slice.primary.text, linkResolver, htmlSerializer)}</TextWrapper>
+  return <TextWrapper>{RichText.render(slice.primary.text.raw, linkResolver, htmlSerializer)}</TextWrapper>
 }

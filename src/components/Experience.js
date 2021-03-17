@@ -70,8 +70,8 @@ export default ({ work }) => {
   if (!jobList) return null
 
   const workContent = jobList.body.map((slice, index, i) => {
-    if (slice.type === "experience") {
-      const jobItem = slice.fields.map((job, jobIndex) => (
+    if (slice.slice_type === "experience") {
+      const jobItem = slice.items.map((job, jobIndex) => (
         <ExperienceItem
           key={`job-item-${jobIndex}`}
           variants={fadeUpItem}
@@ -82,11 +82,11 @@ export default ({ work }) => {
           transition={transition}
         >
           <TertiaryHeading>
-            {RichText.asText(job.job_title)} &mdash;{" "}
-            {RichText.asText(job.work_place)}
+            {RichText.asText(job.job_title.raw)} &mdash;{" "}
+            {RichText.asText(job.work_place.raw)}
           </TertiaryHeading>
           <Paragraph secondary>
-            {RichText.asText(job.job_description)}
+            {RichText.asText(job.job_description.raw)}
           </Paragraph>
           <Paragraph>
             {startDate(job.start_date)} &mdash; {endDate(job.end_date)}

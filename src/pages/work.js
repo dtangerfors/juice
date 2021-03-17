@@ -10,7 +10,6 @@ import SEO from "../components/seo"
 import variables from "../assets/variables"
 import screen from "../assets/mediaqueries"
 import { transition, fadeUpList, fadeUp, fadeUpItem } from "../assets/animation"
-import { linkResolver } from "../utils/linkResolver"
 
 import {
   PrimaryHeading,
@@ -121,54 +120,60 @@ const ComingSoon = styled.span`
 
 // Query
 export const query = graphql`
-  {
-    prismic {
-      allProjects {
-        edges {
-          node {
-            title
-            subtitle
-            thumbnail
-            _linkType
-            work_in_progress
-            _meta {
-              id
-              uid
-              type
-            }
+{
+  allPrismicProject {
+    edges {
+      node {
+        data {
+          title {
+            raw
           }
+          subtitle {
+            raw
+          }
+          thumbnail {
+            alt
+            copyright
+            url
+            thumbnails
+          }
+          work_in_progress
         }
+        id
+        uid
+        type
       }
     }
   }
+}
 `
 
 const Project = ({ project }) => {
-  if (project.work_in_progress) {
+  if (project.data.work_in_progress) {
     return (
       <div>
         <Figure>
           <WorkImage
-            alt={project.thumbnail.alt}
-            src={project.thumbnail.url}
+            alt={project.data.thumbnail.alt}
+            src={project.data.thumbnail.url}
           />
           <ComingSoon>Coming Soon</ComingSoon>
         </Figure>
-        <Title><ButtonLinkArrow>&rarr;</ButtonLinkArrow>{RichText.asText(project.title)}</Title>
-        <Subtitle>{RichText.asText(project.subtitle)}</Subtitle>
+        <Title><ButtonLinkArrow>&rarr;</ButtonLinkArrow>{RichText.asText(project.data.title.raw)}</Title>
+        <Subtitle>{RichText.asText(project.data.subtitle.raw)}</Subtitle>
       </div>
     )
   } else {
     return (
-      <WorkLink to={linkResolver(project._meta)}>
+      <WorkLink to={project.uid}>
         <Figure>
           <WorkImage
-            alt={project.thumbnail.alt}
-            src={project.thumbnail.url}
+            alt={project.data.thumbnail.alt}
+            src={project.data.thumbnail.url}
           />
         </Figure>
-        <Title><ButtonLinkArrow>&rarr;</ButtonLinkArrow>{RichText.asText(project.title)}</Title>
-        <Subtitle>{RichText.asText(project.subtitle)}</Subtitle>
+        <Title><ButtonLinkArrow>&rarr;</ButtonLinkArrow>{RichText.asText(project.data.title.raw)}</Title>
+        <Subtitle>{RichText.asText(project.data.subtitle.raw)}</Subtitle>
       </WorkLink>
     )
   }
@@ -195,7 +200,7 @@ const ProjectSection = ({ projects }) => {
             initial="hidden"
             animate="visible"
             transition={transition}
-            key={project.node._meta.id}
+            key={i}
           >
           <Project project={project.node} />
           </Work>
@@ -206,7 +211,7 @@ const ProjectSection = ({ projects }) => {
 }
 
 const WorkPage = ({ data }) => {
-  const projects = data.prismic.allProjects.edges
+  const projects = data.allPrismicProject.edges
   if (!projects) return null
 
   return (

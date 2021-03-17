@@ -139,7 +139,7 @@ const ProjectBody = styled.section`
 const SliceItems = ({ slices }) => {
   return slices.map((slice, index) => {
     const res = (() => {
-      switch (slice.type) {
+      switch (slice.slice_type) {
         case "text":
           return <Text slice={slice} key={index} />
 
@@ -178,7 +178,7 @@ function DemoLink(props) {
 }
 
 const SingleProjectPage = ({ data }) => {
-  const project = data.prismic.allProjects.edges.slice(0, 1).pop()
+  const project = data.allPrismicProject.edges.slice(0, 1).pop()
   if (!project) return null
 
   let {
@@ -189,12 +189,12 @@ const SingleProjectPage = ({ data }) => {
     project_demo,
     body,
     categories
-  } = project.node
+  } = project.node.data
 
   return (
 
     <Layout>
-      <SEO title={RichText.asText(title)} />
+      <SEO title={RichText.asText(title.raw)} />
       <ProjectHeader>
         <TitleWrap
           as={motion.div}
@@ -226,7 +226,7 @@ const SingleProjectPage = ({ data }) => {
               transition={transition}
               style={{ paddingBottom: "1.2rem" }}
             >
-              {RichText.asText(title)}
+              {RichText.asText(title.raw)}
             </PrimaryHeading>
             <Lead
               as={motion.p}
@@ -236,7 +236,7 @@ const SingleProjectPage = ({ data }) => {
               transition={{ delay: 0.1, ...transition }}
               style={{ paddingBottom: "3.6rem" }}
             >
-              {RichText.asText(subtitle)}
+              {RichText.asText(subtitle.raw)}
             </Lead>
           </HeaderColumn>
           <HeaderColumn>
@@ -248,7 +248,7 @@ const SingleProjectPage = ({ data }) => {
               transition={{ delay: 0.2, ...transition }}
               secondary
             >
-              {RichText.asText(excerpt)}
+              {RichText.asText(excerpt.raw)}
             </Paragraph>
           </HeaderColumn>
         </TitleWrap>
@@ -271,65 +271,89 @@ const SingleProjectPage = ({ data }) => {
 }
 
 export const query = graphql`
-  query SingleWork($uid: String) {
-    prismic {
-      allProjects(uid: $uid) {
-        edges {
-          node {
-            title
-            subtitle
-            featured_image
-            _linkType
-            _meta {
+query SingleProject($uid: String) {
+  allPrismicProject(filter: {uid: {eq: $uid}}) {
+    edges {
+      node {
+        data {
+          title {
+            raw
+          }
+          subtitle {
+            raw
+          }
+          featured_image {
+            alt
+            copyright
+            url
+            thumbnails
+          }
+          categories
+          excerpt {
+            raw
+          }
+          project_demo {
+            link_type
+            type
+          }
+          body {
+            ... on PrismicProjectBodyText {
               id
-              uid
-              type
+              primary {
+                text {
+                  raw
+                }
+              }
+              slice_label
+              slice_type
             }
-            excerpt
-            categories
-            project_demo {
-              _linkType
-              ... on PRISMIC__ExternalLink {
-                target
-                _linkType
-                url
+            ... on PrismicProjectBodyImage {
+              id
+              primary {
+                image {
+                  alt
+                  copyright
+                  url
+                  thumbnails
+                }
               }
+              slice_label
+              slice_type
             }
-            body {
-              ... on PRISMIC_ProjectBodyText {
-                type
-                label
-                primary {
-                  text
+            ... on PrismicProjectBodyImageCarousel {
+              id
+              items {
+                image {
+                  alt
+                  copyright
+                  url
+                  thumbnails
                 }
               }
-              ... on PRISMIC_ProjectBodyImage {
-                type
-                label
-                primary {
-                  image
+              slice_label
+              slice_type
+            }
+            ... on PrismicProjectBodyParallaxImage {
+              id
+              primary {
+                image {
+                  alt
+                  copyright
+                  url
+                  thumbnails
                 }
               }
-              ... on PRISMIC_ProjectBodyImage_carousel {
-                type
-                label
-                fields {
-                  image
-                }
-              }
-              ... on PRISMIC_ProjectBodyParallax_image {
-                type
-                label
-                primary {
-                  image
-                }
-              }
+              slice_label
+              slice_type
             }
           }
         }
+        uid
+        type
       }
     }
   }
+}
 `
 
 export default SingleProjectPage

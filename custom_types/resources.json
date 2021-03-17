@@ -1,0 +1,81 @@
+{
+    "Main" : {
+      "uid" : {
+        "type" : "UID",
+        "config" : {
+          "label" : "Page ID",
+          "placeholder" : "Unique identifier for the page"
+        }
+      },
+      "title" : {
+        "type" : "StructuredText",
+        "config" : {
+          "single" : "heading1",
+          "label" : "title",
+          "placeholder" : "Page title"
+        }
+      },
+      "lead" : {
+        "type" : "StructuredText",
+        "config" : {
+          "multi" : "paragraph",
+          "label" : "lead",
+          "placeholder" : "A short introduction for the page"
+        }
+      },
+      "body" : {
+        "type" : "Slices",
+        "fieldset" : "Slice zone",
+        "config" : {
+          "labels" : {
+            "resource_item" : [ ]
+          },
+          "choices" : {
+            "resource_item" : {
+              "type" : "Slice",
+              "fieldset" : "Resource",
+              "description" : "A resource to share",
+              "icon" : "favorite",
+              "display" : "list",
+              "non-repeat" : {
+                "category_title" : {
+                  "type" : "StructuredText",
+                  "config" : {
+                    "single" : "heading1",
+                    "label" : "Category title",
+                    "placeholder" : "Resource Category"
+                  }
+                }
+              },
+              "repeat" : {
+                "item_title" : {
+                  "type" : "StructuredText",
+                  "config" : {
+                    "single" : "heading1",
+                    "label" : "Item title",
+                    "placeholder" : "Resource title"
+                  }
+                },
+                "item_desc" : {
+                  "type" : "StructuredText",
+                  "config" : {
+                    "single" : "paragraph",
+                    "label" : "Item Description",
+                    "placeholder" : "Resource description"
+                  }
+                },
+                "item_link" : {
+                  "type" : "Link",
+                  "config" : {
+                    "allowTargetBlank" : true,
+                    "label" : "Item link",
+                    "placeholder" : "Link to the resource"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }

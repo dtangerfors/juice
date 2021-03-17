@@ -176,46 +176,51 @@ const blobAnimation = {
 
 // GraphQL
 export const query = graphql`
-  query AboutPageQuery {
-    prismic {
-      allAbout_pages {
-        edges {
-          node {
-            body {
-              ... on PRISMIC_About_pageBodyExperience {
-                type
-                fields {
-                  job_title
-                  work_place
-                  job_description
-                  start_date
-                  end_date
+query AboutPage {
+  allPrismicAboutPage {
+    edges {
+      node {
+        data {
+          title {
+            raw
+          }
+          sub_title {
+            raw
+          }
+          lead {
+            raw
+          }
+          body {
+            ... on PrismicAboutPageBodyExperience {
+              id
+              items {
+                job_description {
+                  raw
+                }
+                job_title {
+                  raw
+                }
+                end_date
+                start_date
+                work_place {
+                  raw
                 }
               }
-              ... on PRISMIC_About_pageBodyEducation {
-                type
-                fields {
-                  degree
-                  university
-                  start_date
-                  end_date
-                }
-              }
+              slice_type
             }
-            lead
-            sub_title
-            title
           }
         }
       }
     }
   }
+}
+
 `
 
 export default function About({ data }) {
-  const about = data.prismic.allAbout_pages.edges.slice(0, 1).pop()
-
-  if (!about) return null
+  const prismicContent = data.allPrismicAboutPage.edges.slice(0, 1).pop();
+  if (!prismicContent) return null;
+  const document = prismicContent.node.data;
 
   return (
     <Layout>
@@ -243,7 +248,7 @@ export default function About({ data }) {
             animate="visible"
             transition={{ delay: 0.1, ...transition }}
           >
-            This is me / {RichText.asText(about.node.title)}
+            This is me / {RichText.asText(document.title.raw)}
           </PageTitle>
           <PrimaryHeading
             as={motion.h2}
@@ -252,7 +257,7 @@ export default function About({ data }) {
             animate="visible"
             transition={{ delay: 0.2, ...transition }}
           >
-            {RichText.asText(about.node.sub_title)}
+            {RichText.asText(document.sub_title.raw)}
           </PrimaryHeading>
           <Lead
             as={motion.p}
@@ -261,7 +266,7 @@ export default function About({ data }) {
             animate="visible"
             transition={{ delay: 0.3, ...transition }}
           >
-            {RichText.asText(about.node.lead)}
+            {RichText.asText(document.lead.raw)}
           </Lead>
           <ContactOptions
             as={motion.address}
@@ -310,7 +315,7 @@ export default function About({ data }) {
         <SectionHeader>
           <SecondaryHeading>Experience</SecondaryHeading>
         </SectionHeader>
-        <Experience work={about.node} />
+        <Experience work={document} />
       </AboutWrapper>
     </Layout>
   )

@@ -33,25 +33,29 @@ const PaddedContent = styled(Content)`
 // Query 
 
 export const query = graphql`
-  {
-    prismic {
-      allHomepages {
-        edges {
-          node {
-            title
-            excerpt
+{
+  allPrismicHomepage {
+    edges {
+      node {
+        data {
+          title {
+            raw
+          }
+          excerpt {
+            raw
           }
         }
       }
     }
   }
+}
 `
 
 const IndexPage = ({data}) => {
 
-  const prismicContent = data.prismic.allHomepages.edges[0]
+  const prismicContent = data.allPrismicHomepage.edges[0]
   if (!prismicContent) return null
-  const document = prismicContent.node
+  const document = prismicContent.node.data
 
   
   return (
@@ -73,7 +77,7 @@ const IndexPage = ({data}) => {
           variants={fadeUp}
           transition={{ delay: 1, ...transition }}
         >
-          {RichText.asText(document.title)}
+          {RichText.asText(document.title.raw)}
         </PrimaryHeading>
         <Paragraph
           style={{
@@ -86,7 +90,7 @@ const IndexPage = ({data}) => {
           exit="exit"
           variants={fadeUp}
           transition={{ delay: 1.2, ...transition }}
-        >{RichText.asText(document.excerpt)}
+        >{RichText.asText(document.excerpt.raw)}
         </Paragraph>
       </TextWrapper>
       <ButtonWrapper

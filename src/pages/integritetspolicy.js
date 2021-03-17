@@ -30,24 +30,32 @@ const PaddedContent = styled(Content)`
 // Query
 
 export const query = graphql`
-  {
-    prismic {
-      allPrivacy_policys {
-        edges {
-          node {
-            page_content
-            page_title
+query PrivacyPolicyPage {
+  allPrismicPrivacyPolicy {
+    edges {
+      node {
+        data {
+          page_title {
+            html
+            text
+            raw
+          }
+          page_content {
+            html
+            text
+            raw
           }
         }
       }
     }
   }
+}
 `
 
 const PrivacyPolicyPage = ({ data }) => {
-  const prismicContent = data.prismic.allPrivacy_policys.edges[0]
+  const prismicContent = data.allPrismicPrivacyPolicy.edges[0]
   if (!prismicContent) return null
-  const document = prismicContent.node
+  const document = prismicContent.node.data
 
   return (
     <Layout center>
@@ -58,10 +66,10 @@ const PrivacyPolicyPage = ({ data }) => {
       <PaddedContent>
         <TextWrapper>
           <PrimaryHeading>
-            {RichText.asText(document.page_title)}
+            {RichText.asText(document.page_title.raw)}
           </PrimaryHeading>
           <div>
-            {RichText.render(document.page_content, linkResolver, htmlSerializer)}
+            {RichText.render(document.page_content.raw, linkResolver, htmlSerializer)}
           </div>
         </TextWrapper>
       </PaddedContent>

@@ -1,0 +1,135 @@
+{
+    "Main" : {
+      "uid" : {
+        "type" : "UID",
+        "config" : {
+          "label" : "Page ID",
+          "placeholder" : "Unique identifier for the page"
+        }
+      },
+      "title" : {
+        "type" : "StructuredText",
+        "config" : {
+          "single" : "heading1",
+          "label" : "Title",
+          "placeholder" : "Title of the page"
+        }
+      },
+      "sub_title" : {
+        "type" : "StructuredText",
+        "config" : {
+          "single" : "heading2",
+          "label" : "Sub Title",
+          "placeholder" : "Sub title of the page"
+        }
+      },
+      "lead" : {
+        "type" : "StructuredText",
+        "config" : {
+          "multi" : "paragraph",
+          "label" : "Lead",
+          "placeholder" : "A short description of your self"
+        }
+      },
+      "body" : {
+        "type" : "Slices",
+        "fieldset" : "Slice zone",
+        "config" : {
+          "labels" : {
+            "experience" : [ ],
+            "education" : [ ]
+          },
+          "choices" : {
+            "experience" : {
+              "type" : "Slice",
+              "fieldset" : "Experience",
+              "description" : "Experiece from work",
+              "icon" : "work",
+              "display" : "list",
+              "non-repeat" : { },
+              "repeat" : {
+                "job_title" : {
+                  "type" : "StructuredText",
+                  "config" : {
+                    "single" : "heading1",
+                    "label" : "Job title",
+                    "placeholder" : "Title of the job"
+                  }
+                },
+                "work_place" : {
+                  "type" : "StructuredText",
+                  "config" : {
+                    "single" : "heading2",
+                    "label" : "Work place",
+                    "placeholder" : "Where were you employed?"
+                  }
+                },
+                "job_description" : {
+                  "type" : "StructuredText",
+                  "config" : {
+                    "multi" : "paragraph",
+                    "label" : "Job description",
+                    "placeholder" : "What was your responsibilities at the job?"
+                  }
+                },
+                "start_date" : {
+                  "type" : "Date",
+                  "config" : {
+                    "label" : "Start date",
+                    "placeholder" : "When the job began"
+                  }
+                },
+                "end_date" : {
+                  "type" : "Date",
+                  "config" : {
+                    "label" : "End date",
+                    "placeholder" : "When the job ended"
+                  }
+                }
+              }
+            },
+            "education" : {
+              "type" : "Slice",
+              "fieldset" : "Education",
+              "description" : "Edcuation",
+              "icon" : "school",
+              "display" : "list",
+              "non-repeat" : { },
+              "repeat" : {
+                "degree" : {
+                  "type" : "StructuredText",
+                  "config" : {
+                    "single" : "heading1",
+                    "label" : "Degree",
+                    "placeholder" : "The degree recieved from finished education"
+                  }
+                },
+                "university" : {
+                  "type" : "StructuredText",
+                  "config" : {
+                    "single" : "heading2",
+                    "label" : "University",
+                    "placeholder" : "Where did you study?"
+                  }
+                },
+                "start_date" : {
+                  "type" : "Date",
+                  "config" : {
+                    "label" : "Start date",
+                    "placeholder" : "When did the education start?"
+                  }
+                },
+                "end_date" : {
+                  "type" : "Date",
+                  "config" : {
+                    "label" : "End date",
+                    "placeholder" : "When did the education finish?"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
