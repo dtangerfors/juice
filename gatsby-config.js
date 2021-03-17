@@ -1,3 +1,5 @@
+const linkResolver = require('./src/utils/linkResolver')
+
 module.exports = {
   siteMetadata: {
     title: `Daniel Tängerfors`,
@@ -37,17 +39,17 @@ module.exports = {
     },
     `gatsby-plugin-transition-link`,
     {
-      resolve: '@prismicio/gatsby-source-prismic-graphql',
+      resolve: 'gatsby-source-prismic',
       options: {
         repositoryName: 'dtangerforsportfolio',
-        path: '/preview',
-        previews: true,
-        pages: [{ // (optional, builds pages dynamically)
-          type: 'project',         // TypeName from prismic
-          match: '/work/:uid',  // Pages will be generated under this pattern
-          path: '/projects',        // Placeholder page for unpublished documents
-          component: require.resolve('./src/templates/project.js'),
-        }],
+        linkResolver: () => (doc) => linkResolver(doc),
+        schemas: {
+          about_page: require('./custom_types/about_page.json'),
+          homepage: require('./custom_types/homepage.json'),
+          privacy_policy: require('./custom_types/privacy_policy.json'),
+          project: require('./custom_types/project.json'),
+          resources: require('./custom_types/resources.json'),
+        },
       },
     },
     {
