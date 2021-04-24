@@ -81,8 +81,8 @@ const IndexPage = ({data}) => {
         </PrimaryHeading>
         <Paragraph
           style={{
-            fontSize: "2.4rem",
-            lineHeight: "3.6rem",
+            fontSize: "clamp(1.6rem, 3vw, 2.4rem)",
+            lineHeight: "1.6em",
           }}
           as={motion.p}
           initial="hidden"

@@ -26,6 +26,8 @@ const Navbar = styled.header`
 
   @media ${screen.large} {
     padding: ${variables.padding.small};
+    padding-left: max(2rem, env(safe-area-inset-left));
+    padding-right: max(2rem, env(safe-area-inset-right));
   }
 `
 

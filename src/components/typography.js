@@ -6,15 +6,11 @@ import variables from "../assets/variables"
 const PrimaryHeading = styled.h1`
   font-family: ${variables.typography.titleFont};
   font-weight: 400;
-  font-size: 4.8rem;
-  line-height: 4.8rem;
+  font-size: clamp(3rem, 4vw, 4.8rem);
+  line-height: 1em;
   color: ${props => props.white ? variables.color.white : variables.color.black};
   padding-bottom: ${variables.padding.small};
 
-  @media ${screen.small} {
-    font-size: 4rem;
-    line-height: 4rem;
-  }
 
   @media ${screen.darkMode} {
     color: ${variables.color.white};
@@ -24,8 +20,8 @@ const PrimaryHeading = styled.h1`
 const SecondaryHeading = styled.h2`
   font-family: ${variables.typography.titleFont};
   font-weight: 400;
-  font-size: 3.6rem;
-  line-height: 3.6rem;
+  font-size: clamp(2.5rem, 4vw, 3.6rem);
+  line-height: 1em;
   padding: 1.2rem 0 2.4rem;
   color: ${props => props.white ? variables.color.white : variables.color.black};
 
@@ -41,8 +37,8 @@ const SecondaryHeading = styled.h2`
 const TertiaryHeading = styled.h3`
   font-family: ${variables.typography.titleFont};
   font-weight: 400;
-  font-size: 2.4rem;
-  line-height: 2.4rem;
+  font-size: clamp(2rem, 4vw, 2.4rem);;
+  line-height: 1em;
   padding-bottom: 1.8rem;
   color: ${props => props.white ? variables.color.white : variables.color.black};
 
@@ -54,7 +50,7 @@ const TertiaryHeading = styled.h3`
 const QuarternaryHeading = styled.h4`
   font-family: ${variables.typography.titleFont};
   font-weight: 400;
-  font-size: 1.8rem;
+  font-size: clamp(1.6rem, 4vw, 1.8rem);;
   text-transform: uppercase;
   color: ${props => props.white ? variables.color.white : variables.color.black};
 

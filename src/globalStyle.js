@@ -23,10 +23,6 @@ const GlobalStyle = createGlobalStyle`
 
   html {
     font-size: 62.5%;
-
-    @media ${screen.small} {
-      font-size: 50%;
-    } 
   }
 
   body {

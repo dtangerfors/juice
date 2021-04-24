@@ -46,6 +46,8 @@ const MainWrapper = styled.main`
 
   @media ${screen.large} {
     padding: 0 ${variables.padding.small} ${variables.padding.large};
+    padding-left: max(2rem, env(safe-area-inset-left));
+    padding-right: max(2rem, env(safe-area-inset-right));
   }
 `
 const Container = styled.div`
@@ -59,6 +61,9 @@ const Footer = styled.footer`
   display: flex;
   justify-content: center;
   background-color: ${variables.color.white};
+  padding-left: max(2rem, env(safe-area-inset-left));
+  padding-right: max(2rem, env(safe-area-inset-right));
+  padding-bottom: env(safe-area-inset-bottom);
 
   @media ${screen.darkMode} {
     background-color: ${variables.color.black};
@@ -69,7 +74,6 @@ const Footer = styled.footer`
     justify-content: space-between;
     align-items: center;
     padding: ${variables.padding.small} 0;
-    margin: 0 ${variables.padding.small};
     border-top: 1px solid ${lighten(0.7, variables.color.black)};
 
     @media ${screen.darkMode} {
@@ -160,6 +164,7 @@ const Layout = ({ center, children }) => {
       <Helmet>
       <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
       rel="stylesheet" />
+      <meta name='viewport' content='initial-scale=1, viewport-fit=cover'></meta>
       </Helmet>
       <Header siteTitle={data.site.siteMetadata.title} />
       <BodyContainer center={center}>

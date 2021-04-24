@@ -19,7 +19,7 @@ const Navbar = styled.nav`
   position: fixed;
   z-index: -1;
   width: 100vw;
-  height: 100vh;
+  min-height: 100vh;
   top: 0;
   left: 0;
   display: flex;
@@ -40,11 +40,13 @@ const NavItems = styled.ul`
   padding: ${variables.padding.xlarge} ${variables.padding.large} 0;
 
   @media ${screen.xLarge} {
-    padding: ${variables.padding.xlarge} ${variables.padding.medium} 0;
+    padding: ${variables.padding.xlarge} ${variables.padding.medium} ${variables.padding.medium};
   }
 
   @media ${screen.large} {
-    padding: 15rem ${variables.padding.small} 0;
+    padding: 15rem ${variables.padding.small} ${variables.padding.medium};
+    padding-left: max(2rem, env(safe-area-inset-left));
+    padding-right: max(2rem, env(safe-area-inset-right));
   }
 
 `
