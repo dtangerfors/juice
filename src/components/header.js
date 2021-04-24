@@ -1,12 +1,15 @@
 import { Link } from "gatsby"
 import PropTypes from "prop-types"
-import React from "react"
+import React, { useState } from "react"
 import styled from "styled-components"
 
 import screen from "../assets/mediaqueries"
 import variables from "../assets/variables"
 
-const Navbar = styled.nav`
+import Hamburger from './Hamburger'
+import Nav from './Nav'
+
+const Navbar = styled.header`
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -15,12 +18,23 @@ const Navbar = styled.nav`
   max-width: 160rem;
   width: 100%;
   z-index: 20;
-  padding: 4.8rem ${variables.padding.large} 0;
+  padding: ${variables.padding.small} ${variables.padding.large};
 
-  @media ${screen.medium} {
-    padding: ${variables.padding.small};
-    padding-bottom: 0;
+  @media ${screen.xLarge} {
+    padding: ${variables.padding.small} ${variables.padding.medium};
   }
+
+  @media ${screen.large} {
+    padding: ${variables.padding.small};
+  }
+`
+
+const Container = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding-bottom: ${variables.padding.xsmall};
 `
 
 const Logo = styled.svg`
@@ -39,46 +53,13 @@ const LogoLink = styled(Link)`
   border-radius: 5rem;
 `
 
-const NavItems = styled.ul`
-  display: flex;
-  list-style: none;
-  margin-right: -2.6rem;
-`
+const Header = ({ siteTitle }) => {
 
-const NavItem = styled.li`
-  position: relative;
-  padding: 0 1rem;
-`
+  const [open, setOpen] = useState(false);
 
-const NavLink = styled(Link)`
-  padding: .7rem 1.6rem;
-  font-family: ${variables.typography.titleFont};
-  font-size: 1.6rem;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  line-height: 1;
-  text-decoration: none;
-  transition: all .2s ease;
-
-  color: ${variables.color.black};
-
-  border-radius: 3rem;
-
-  @media ${screen.darkMode} {
-    color: ${variables.color.white};
-  }
-
-  &:active {
-    background: linear-gradient(90deg, #ae5ae0, #ff5978, #ffcb00, #ff5500);
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
-    transition: all .2s ease;
-  }
-`
-
-const Header = ({ siteTitle }) => (
+  return (
     <Navbar>
+      <Container>
       <LogoLink to="/">
         <Logo viewBox="0 0 283.5 283.5">
           <path
@@ -98,16 +79,11 @@ const Header = ({ siteTitle }) => (
         { siteTitle }
       </LogoLink>
 
-      <NavItems>
-        <NavItem>
-          <NavLink to="/work" title="View my recent work">Work</NavLink>
-        </NavItem>
-        <NavItem>
-          <NavLink to="/about" title="Learn more about me">About</NavLink>
-        </NavItem>
-      </NavItems>
+      <Hamburger open={open} setOpen={setOpen}/>
+      <Nav open={open} setOpen={setOpen}/>
+      </Container>
     </Navbar>
-)
+)}
 
 Header.propTypes = {
   siteTitle: PropTypes.string,

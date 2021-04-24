@@ -51,21 +51,6 @@ const GlobalStyle = createGlobalStyle`
     transition: all .3s ease;
   }
   
-  a:hover {
-    background-color: rgba(0,0,0, .05);
-
-
-    @media ${screen.darkMode} {
-      background-color: rgba(255, 255, 255, .1);
-    }
-  }
-
-  a:focus {
-    outline: none;
-    background: #ff5978;
-    box-shadow: inset 1rem 0 3rem #ae5ae0, inset -1rem 0 3rem #ffcb00, inset -1rem .5rem 1rem #ff5500;
-  }
-  
 `
 
 export default GlobalStyle
