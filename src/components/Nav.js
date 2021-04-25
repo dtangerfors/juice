@@ -19,7 +19,8 @@ const Navbar = styled.nav`
   position: fixed;
   z-index: -1;
   width: 100vw;
-  min-height: 100vh;
+  height: 100vh;
+  padding-bottom: ${variables.padding.medium};
   top: 0;
   left: 0;
   display: flex;
@@ -37,6 +38,8 @@ const NavItems = styled.ul`
   list-style: none;
   max-width: 160rem;
   width: 100%;
+  height: 100%;
+  overflow: scroll;
   padding: ${variables.padding.xlarge} ${variables.padding.large} 0;
 
   @media ${screen.xLarge} {
@@ -109,7 +112,7 @@ const Nav = ({ open }) => {
       animate={{
         y: open ? 0 : "-100%",
       }}
-      transition={{ delay: open ? 0 : 0.8, type: "tween", duration: 0.4 }}
+      transition={{ delay: open ? 0 : 1, type: "tween", duration: 0.4 }}
     >
       <NavItems>
         <NavItem
@@ -118,10 +121,22 @@ const Nav = ({ open }) => {
             y: open ? 0 : 30,
             opacity: open ? 1 : 0,
           }}
-          transition={{ delay: open ? 0.7 : 0.4, type: "spring", stiffness: 75, duration: 0.1 }}
+          transition={{ delay: open ? 0.8 : 0.6, type: "spring", stiffness: 75, duration: 0.1 }}
         >
           <NavLink to="/work" title="View my recent work">
           <ButtonLinkArrow>&rarr;</ButtonLinkArrow>Work
+          </NavLink>
+        </NavItem>
+        <NavItem
+          as={motion.li}
+          animate={{
+            y: open ? 0 : 30,
+            opacity: open ? 1 : 0,
+          }}
+          transition={{ delay: open ? 0.7 : 0.4, type: "spring", stiffness: 75, duration: 0.1 }}
+        >
+          <NavLink to="/resources" title="Great resources for design & code">
+          <ButtonLinkArrow>&rarr;</ButtonLinkArrow>Resources
           </NavLink>
         </NavItem>
         <NavItem
