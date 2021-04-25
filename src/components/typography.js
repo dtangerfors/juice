@@ -64,6 +64,7 @@ const Paragraph = styled.p`
   font-weight: 400;
   font-size: 1.6rem;
   line-height: 2.4rem;
+  max-width: 70ch;
   color: ${props => props.white ? variables.color.white : variables.color.gray30};
   padding-bottom: ${variables.padding.small};
 
