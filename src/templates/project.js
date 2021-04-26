@@ -102,6 +102,7 @@ const ImageContainer = styled.div`
 
   grid-column-start: 1;
   grid-column-end: 13;
+  margin-right: -6vw;
 
   @media ${screen.medium} {
     grid-column-start: 1;
@@ -128,7 +129,7 @@ const ProjectBody = styled.section`
   grid-template-columns: repeat(12, 1fr);
   grid-template-rows: auto;
   column-gap: ${variables.padding.xsmall};
-  padding: ${variables.padding.xlarge} 0;
+  padding: ${variables.padding.xlarge} 0 0;
 
   @media ${screen.medium} {
     grid-template-columns: repeat(4, 1fr);
@@ -162,7 +163,7 @@ const SliceItems = ({ slices }) => {
 }
 
 function DemoLink(props) {
-  if (!props.link) {
+  if (!props) {
     return null
   }
 
@@ -293,8 +294,8 @@ query SingleProject($uid: String) {
             raw
           }
           project_demo {
-            link_type
             type
+            url
           }
           body {
             ... on PrismicProjectBodyText {
@@ -354,6 +355,7 @@ query SingleProject($uid: String) {
     }
   }
 }
+
 `
 
 export default SingleProjectPage

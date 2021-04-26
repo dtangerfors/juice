@@ -31,20 +31,22 @@ const BodyContainer = styled.div`
 `
 
 const MainWrapper = styled.main`
-  max-width: 160rem;
+  max-width: 88vw;
   width: 100%;
   min-height: 100vh;
   margin: 0 auto;
-  padding: 0 ${variables.padding.large} ${variables.padding.large};
+  padding: 0 0 ${variables.padding.large};
   position: relative;
   display: grid;
   place-items: center;
 
   @media ${screen.xLarge} {
-    padding: 0 ${variables.padding.medium} ${variables.padding.large};
+    max-width: 92vw;
+    padding: 0 0 ${variables.padding.large};
   }
 
   @media ${screen.large} {
+    max-width: 100vw;
     padding: 0 ${variables.padding.small} ${variables.padding.large};
     padding-left: max(2rem, env(safe-area-inset-left));
     padding-right: max(2rem, env(safe-area-inset-right));

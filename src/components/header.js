@@ -15,17 +15,22 @@ const Navbar = styled.header`
   align-items: center;
   position: fixed;
   top: 0;
-  max-width: 160rem;
+  left: 0;
+  right: 0;
   width: 100%;
+  max-width: 88vw;
+  margin: 0 auto;
   z-index: 20;
-  padding: ${variables.padding.small} ${variables.padding.large};
+  padding: ${variables.padding.small} 0;
 
   @media ${screen.xLarge} {
-    padding: ${variables.padding.small} ${variables.padding.medium};
+    max-width: 92vw;
+    padding: ${variables.padding.small} 0;
   }
 
   @media ${screen.large} {
-    padding: ${variables.padding.small};
+    max-width: 100vw;
+    padding: ${variables.padding.xsmall};
     padding-left: max(2rem, env(safe-area-inset-left));
     padding-right: max(2rem, env(safe-area-inset-right));
   }
@@ -36,12 +41,15 @@ const Container = styled.div`
   justify-content: space-between;
   align-items: center;
   width: 100%;
-  padding-bottom: ${variables.padding.xsmall};
 `
 
 const Logo = styled.svg`
   width: 4.8rem;
   fill: ${variables.color.black};
+
+  @media ${screen.small} {
+    width: 2.4rem;
+  }
 
   @media ${screen.darkMode} {
     fill: ${variables.color.white};
