@@ -8,7 +8,7 @@ const padding = {
 
 const colors = {
     white: '#F7F7F7',
-    black: '#111111',
+    black: '#0e0e0e',
     gray30: '#333',
     gray50: '#595959',
     gray80: '#dedede',
