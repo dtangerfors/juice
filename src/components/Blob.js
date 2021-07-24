@@ -24,6 +24,8 @@ OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 import React from "react"
 import styled, { keyframes } from "styled-components"
 import {motion} from "framer-motion"
+import blob from '../images/pride-blob.png'
+import screen from '../assets/mediaqueries'
 
 const styles = {
   blob: "#ff5978",
@@ -65,24 +67,32 @@ export const blobAnimation = {
 
 const Morph = styled.div`
   position: absolute;
-  transform: translate(0, -50%);
-  top: 50%;
-  right: 0;
+  transform: translate(-50%, -50%);
+  top: 20%;
+  right: -20vw;
   z-index: -1;
   min-height: 200px;
   min-width: 200px;
-  width: 70vh;
-  height: 70vh;
+  width: 120vh;
+  height: 120vh;
+
+  @media ${screen.medium} {
+    width: 80vh;
+    height: 80vh;
+    top: 10%;
+    right: -30vw;
+    transform: translate(0, -50%);
+  }
 
   &::before {
     content: "";
     display: block;
     width: 100%;
     height: 100%;
-    background: ${styles.blob};
-    box-shadow: ${styles.shades};
-    background-size: cover;
-    border-radius: 63% 37% 54% 46% / 55% 48% 52% 45%;
+    background-image: url(${blob});
+    /* box-shadow: ${styles.shades}; */
+    background-size: contain;
+    /* border-radius: 63% 37% 54% 46% / 55% 48% 52% 45%; */
     transform-origin: 50% 50%;
     transform-style: preserve-3d;
     perspective: 1000px;
