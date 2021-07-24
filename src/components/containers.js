@@ -14,6 +14,8 @@ const HeaderWrapper = styled.header`
 const Content = styled.div`
   text-align: left;
   position: relative;
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
 `
 
 export {HeaderWrapper, Content}
