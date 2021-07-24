@@ -6,10 +6,41 @@ import variables from "../assets/variables"
 const PrimaryHeading = styled.h1`
   font-family: ${variables.typography.titleFont};
   font-weight: 400;
-  font-size: clamp(3rem, 4vw, 4.8rem);
-  line-height: 1em;
+  font-size: clamp(3rem, 8vw, 9rem);
+  line-height: 1.2em;
   color: ${props => props.white ? variables.color.white : variables.color.black};
   padding-bottom: ${variables.padding.small};
+
+  & .punctation {
+    position: relative;
+    font-size: 0;
+    display: inline-flex;
+    align-items: flex-end;
+    vertical-align: top;
+
+    &::after {
+      position: relative;
+      content:'';
+      font-size: 1.4rem;
+      font-family: ${variables.typography.bodyFont};
+      text-transform: uppercase;
+      letter-spacing: .1em;
+      line-height: 1;
+      border: 1px solid;
+      padding: .2em .7em;
+      border-radius: 2rem;
+      top: -1.3em;
+      left: .3em;
+    }
+
+    &.stop::after {
+      content: 'Full Stop';
+    }
+
+    &.comma::after {
+      content: 'Comma';
+    }
+  }
 
 
   @media ${screen.darkMode} {
@@ -19,7 +50,7 @@ const PrimaryHeading = styled.h1`
 
 const SecondaryHeading = styled.h2`
   font-family: ${variables.typography.titleFont};
-  font-weight: 400;
+  font-weight: 300;
   font-size: clamp(2.5rem, 4vw, 3.6rem);
   line-height: 1em;
   padding: 1.2rem 0 2.4rem;
@@ -36,7 +67,7 @@ const SecondaryHeading = styled.h2`
 
 const TertiaryHeading = styled.h3`
   font-family: ${variables.typography.titleFont};
-  font-weight: 400;
+  font-weight: 300;
   font-size: clamp(2rem, 4vw, 2.4rem);;
   line-height: 1em;
   padding-bottom: 1.8rem;
@@ -49,7 +80,7 @@ const TertiaryHeading = styled.h3`
 
 const QuarternaryHeading = styled.h4`
   font-family: ${variables.typography.titleFont};
-  font-weight: 400;
+  font-weight: 300;
   font-size: clamp(1.6rem, 4vw, 1.8rem);;
   text-transform: uppercase;
   color: ${props => props.white ? variables.color.white : variables.color.black};
