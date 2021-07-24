@@ -1,6 +1,6 @@
 import React from "react"
 import { graphql } from "gatsby"
-import { RichText } from 'prismic-reactjs'
+import { RichText } from "prismic-reactjs"
 import { motion, AnimatePresence } from "framer-motion"
 
 import { Helmet } from "react-helmet"
@@ -9,108 +9,132 @@ import styled from "styled-components"
 import Layout from "../components/layout"
 import SEO from "../components/seo"
 import variables from "../assets/variables"
-import {transition, fadeUpList, fadeUp} from "../assets/animation"
+import screen from "../assets/mediaqueries"
+import { transition, fadeUp } from "../assets/animation"
 
-import { PrimaryHeading, Paragraph } from "../components/typography"
+import { Paragraph } from "../components/typography"
 
 import Blob from "../components/Blob"
-import Button, {ButtonOutlined, ButtonWrapper, ButtonInnerWrap } from "../components/Button"
 import { Content } from "../components/containers"
+import { AnimatedTitle } from "../components/AnimatedTitle"
+import ProjectSection from "../components/Project"
 
 import meta_card from "../images/juice-meta-card.jpg"
 
 // Styled Components
-const TextWrapper = styled.header`
+const Header = styled.header`
   position: relative;
   z-index: 2;
-  max-width: 110rem;
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  align-items: flex-end;
+  padding: 4vw 0;
   margin: 0 auto;
+
+  @media ${screen.small} {
+    min-height: 80vh;
+  }
 `
-const PaddedContent = styled(Content)`
-  padding: ${variables.padding.xlarge} 0 ${variables.padding.large};
+const TextWrapper = styled.div`
+  grid-column: 5 / 13;
+  padding: ${variables.padding.xlarge} 0;
+
+  @media ${screen.medium} {
+    grid-column: span 12;
+  }
 `
 
-// Query 
+// Query
 
 export const query = graphql`
-{
-  allPrismicHomepage {
-    edges {
-      node {
-        data {
-          title {
-            raw
-          }
-          excerpt {
-            raw
+  {
+    allPrismicHomepage {
+      edges {
+        node {
+          data {
+            title {
+              raw
+            }
+            excerpt {
+              raw
+            }
           }
         }
       }
     }
+    allPrismicProject {
+      edges {
+        node {
+          data {
+            title {
+              raw
+            }
+            subtitle {
+              raw
+            }
+            thumbnail {
+              alt
+              copyright
+              url
+              thumbnails
+            }
+            work_in_progress
+          }
+          id
+          uid
+          type
+          url
+        }
+      }
+    }
   }
-}
 `
 
-const IndexPage = ({data}) => {
+const IndexPage = ({ data }) => {
 
-  const prismicContent = data.allPrismicHomepage.edges[0]
+  const prismicContent = data
   if (!prismicContent) return null
-  const document = prismicContent.node.data
+  const homepage = prismicContent.allPrismicHomepage.edges[0].node.data
+  const projects = prismicContent.allPrismicProject.edges
 
-  
   return (
-  <Layout center>
-    <SEO title="Frontend developer based in Stockholm" />
-    <Helmet>
-      <link rel="stylesheet" href="https://use.typekit.net/xgf4jbu.css"/>
-      <meta property="og:image" content={meta_card}></meta>
-      <meta property="twitter:image" content={meta_card}></meta>
+    <Layout center>
+      <SEO title="Frontend developer based in Stockholm" />
+      <Helmet>
+        <link rel="stylesheet" href="https://use.typekit.net/xgf4jbu.css" />
+        <meta property="og:image" content={meta_card}></meta>
+        <meta property="twitter:image" content={meta_card}></meta>
       </Helmet>
-    <AnimatePresence>
-    <PaddedContent>
-      <TextWrapper>
-        <PrimaryHeading
-          as={motion.h1}
-          initial="hidden"
-          animate="visible"
-          exit="exit"
-          variants={fadeUp}
-          transition={{ delay: 1, ...transition }}
-        >
-          {RichText.asText(document.title.raw)}
-        </PrimaryHeading>
-        <Paragraph
-          style={{
-            fontSize: "clamp(1.6rem, 3vw, 2.1rem)",
-            lineHeight: "1.6em",
-          }}
-          as={motion.p}
-          initial="hidden"
-          animate="visible"
-          exit="exit"
-          variants={fadeUp}
-          transition={{ delay: 1.2, ...transition }}
-        >{RichText.asText(document.excerpt.raw)}
-        </Paragraph>
-      </TextWrapper>
-      <ButtonWrapper
-        as={motion.div}
-        initial="hidden"
-        animate="visible"
-        variants={fadeUpList}
-      >
-        <ButtonInnerWrap as={motion.div} variants={fadeUp} initial="hidden" animate="visible" transition={{ delay: 0.7, ...transition }}>
-          <Button title="Projects" href="/work" />
-        </ButtonInnerWrap>
-
-        <ButtonInnerWrap as={motion.div} variants={fadeUp} initial="hidden" animate="visible" transition={{ delay: 0.8, ...transition }}>
-          <ButtonOutlined title="Calendars" href="/almanacka" />
-        </ButtonInnerWrap>
-      </ButtonWrapper>
-      <Blob />
-    </PaddedContent>
-    </AnimatePresence>
-  </Layout>
-)}
+      <AnimatePresence>
+        <Header>
+          <AnimatedTitle>{RichText.asText(homepage.title.raw)}</AnimatedTitle>
+        </Header>
+        <Blob />
+        <Content>
+          <TextWrapper>
+            <Paragraph
+              style={{
+                fontSize: "clamp(1.6rem, 3vw, 2.1rem)",
+                lineHeight: "1.6em",
+              }}
+              as={motion.p}
+              initial="hidden"
+              animate="visible"
+              exit="exit"
+              variants={fadeUp}
+              transition={{ delay: 1.2, ...transition }}
+            >
+              {RichText.asText(homepage.excerpt.raw)}
+            </Paragraph>
+          </TextWrapper>
+        </Content>
+        <Content>
+          <ProjectSection projects={projects} />
+        </Content>
+      </AnimatePresence>
+    </Layout>
+  )
+}
 
 export default IndexPage
