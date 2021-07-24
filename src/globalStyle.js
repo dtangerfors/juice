@@ -20,6 +20,11 @@ const GlobalStyle = createGlobalStyle`
     src: url('https://files.dtangerfors.se/fonts/cirka-regular.otf');
     font-weight: 400;
 }
+@font-face {
+    font-family: "Cirka";
+    src: url('https://files.dtangerfors.se/fonts/cirka-light.otf');
+    font-weight: 300;
+}
 
   html {
     font-size: 62.5%;
