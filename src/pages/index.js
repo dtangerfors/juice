@@ -20,6 +20,7 @@ import { AnimatedTitle } from "../components/AnimatedTitle"
 import ProjectSection from "../components/Project"
 
 import meta_card from "../images/juice-meta-card.jpg"
+import CalendarSection from "../components/CalendarSection"
 
 // Styled Components
 const Header = styled.header`
@@ -42,6 +43,7 @@ const TextWrapper = styled.div`
 
   @media ${screen.medium} {
     grid-column: span 12;
+    padding: ${variables.padding.medium} 0;
   }
 `
 
@@ -131,6 +133,9 @@ const IndexPage = ({ data }) => {
         </Content>
         <Content>
           <ProjectSection projects={projects} />
+        </Content>
+        <Content>
+          <CalendarSection />
         </Content>
       </AnimatePresence>
     </Layout>
