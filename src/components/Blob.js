@@ -102,7 +102,7 @@ const Morph = styled.div`
 `
 
 export default function Blob() {
-  return <Morph as={motion.div} initial="hidden"
+  return <Morph key="blob-1" as={motion.div} initial="hidden"
   animate="visible"
   variants={blobAnimation}
   transition={blobTransition}  />

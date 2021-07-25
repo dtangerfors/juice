@@ -148,6 +148,7 @@ const ProjectSection = ({ projects }) => {
   return (
     <WorkWrapper
       as={motion.div}
+      key="work-wrapper"
       initial="hidden"
       animate="visible"
       variants={fadeUpList}
@@ -160,7 +161,7 @@ const ProjectSection = ({ projects }) => {
             initial="hidden"
             animate="visible"
             transition={transition}
-            key={i}
+            key={`project-${i}`}
           >
             <Project project={project.node} />
           </Work>

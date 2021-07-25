@@ -116,6 +116,7 @@ const IndexPage = ({ data }) => {
         <Content>
           <TextWrapper>
             <Paragraph
+              key="index-p-1"
               style={{
                 fontSize: "clamp(1.6rem, 3vw, 2.1rem)",
                 lineHeight: "1.6em",

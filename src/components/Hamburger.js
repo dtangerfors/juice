@@ -79,7 +79,7 @@ const Burger = styled.button`
 
 const Hamburger = ({ open, setOpen }) => {
   return (
-    <Burger as={motion.button} open={open} onClick={() => setOpen(!open)}>
+    <Burger as={motion.button} key="hamburger" open={open} onClick={() => setOpen(!open)}>
       Menu <span></span>
     </Burger>
   )
