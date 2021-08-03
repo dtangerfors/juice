@@ -13,6 +13,7 @@ import {
 import {
   HeaderWrapper
 } from "../components/containers"
+import OtherWorks from "../components/OtherWorks"
 
 // Query
 export const query = graphql`
@@ -66,6 +67,19 @@ const WorkPage = ({ data }) => {
         </PrimaryHeading>
       </HeaderWrapper>
       <ProjectSection projects={projects} />
+      <HeaderWrapper>
+        <PrimaryHeading
+          as={motion.h2}
+          initial="hidden"
+          animate="visible"
+          exit="exit"
+          variants={fadeUp}
+          transition={{ delay: 0.3, ...transition }}
+        >
+          Other works
+        </PrimaryHeading>
+      </HeaderWrapper>
+      <OtherWorks projects={projects} />
     </Layout>
   )
 }
