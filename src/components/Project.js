@@ -16,7 +16,7 @@ const WorkWrapper = styled.section`
   grid-template-rows: auto;
   grid-auto-flow: row;
   column-gap: ${variables.padding.xsmall};
-  row-gap: ${variables.padding.small};
+  row-gap: ${variables.padding.medium};
   grid-column: span 12;
 
   @media ${screen.medium} {
@@ -108,6 +108,7 @@ const ButtonLinkArrow = styled.span`
 const Subtitle = styled(Paragraph)`
   font-size: 1.4rem;
   line-height: 1.4em;
+  padding: 0 .5rem 0 0;
 `
 const ComingSoon = styled.span`
   position: absolute;
