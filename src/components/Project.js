@@ -15,12 +15,16 @@ const WorkWrapper = styled.section`
   grid-template-columns: repeat(12, 1fr);
   grid-template-rows: auto;
   grid-auto-flow: row;
-  column-gap: ${variables.padding.small};
-  row-gap: ${variables.padding.medium};
+  column-gap: ${variables.padding.xsmall};
+  row-gap: ${variables.padding.small};
   grid-column: span 12;
 
   @media ${screen.medium} {
     grid-template-columns: repeat(4, 1fr);
+  }
+
+  @media ${screen.small} {
+    column-gap: 1rem;
   }
 `
 
@@ -30,13 +34,21 @@ const Work = styled(motion.div)`
   grid-column: span 4;
   text-decoration: none;
 
-  @media ${screen.medium} {
-    grid-column: span 2;
+  &:first-child {
+    grid-column: span 8;
+    grid-row: span 2;
   }
 
-  @media ${screen.small} {
-    grid-column: span 4;
+  @media ${screen.medium} {
+    grid-column: span 2;
+
+    &:first-child {
+      grid-column: span 4;
+      grid-row: span 1;
+    }
   }
+
+
 `
 
 const WorkLink = styled(Link)`
@@ -69,10 +81,15 @@ const Title = styled.h2`
   line-height: 2.4rem;
   color: ${variables.color.black};
 
-  padding: ${variables.padding.small} 0 0;
+  padding: ${variables.padding.xsmall} 0 .5rem;
 
   @media ${screen.darkMode} {
     color: ${variables.color.white};
+  }
+
+  @media ${screen.small} {
+    font-size: 1.8rem;
+    line-height: 1.8rem;
   }
 `
 const ButtonLinkArrow = styled.span`
@@ -90,6 +107,7 @@ const ButtonLinkArrow = styled.span`
 `
 const Subtitle = styled(Paragraph)`
   font-size: 1.4rem;
+  line-height: 1.4em;
 `
 const ComingSoon = styled.span`
   position: absolute;
