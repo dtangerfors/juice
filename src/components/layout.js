@@ -53,10 +53,22 @@ const MainWrapper = styled.main`
   }
 `
 const Container = styled.div`
-  max-width: 130rem;
+  max-width: 88vw;
   width: 100%;
   margin: 0 auto;
   padding: ${variables.padding.large} ${variables.padding.small};
+  
+  @media ${screen.xLarge} {
+    max-width: 92vw;
+    padding: 0 0 ${variables.padding.large};
+  }
+
+  @media ${screen.large} {
+    max-width: 100vw;
+    padding: 0 ${variables.padding.small} ${variables.padding.large};
+    padding-left: max(2rem, env(safe-area-inset-left));
+    padding-right: max(2rem, env(safe-area-inset-right));
+  }
 `
 
 const Footer = styled.footer`
