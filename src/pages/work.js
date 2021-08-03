@@ -34,6 +34,7 @@ export const query = graphql`
             thumbnails
           }
           work_in_progress
+          categories
         }
         id
         uid

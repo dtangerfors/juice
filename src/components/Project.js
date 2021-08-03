@@ -172,7 +172,9 @@ const ProjectSection = ({ projects }) => {
       animate="visible"
       variants={fadeUpList}
     >
-      {projects.map((project, i) => {
+      {projects
+        .filter(project => project.node.data.categories === "Development")
+        .map((project, i) => {
         return (
           <Work
             variants={fadeUpItem}
