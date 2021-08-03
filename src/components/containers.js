@@ -7,6 +7,7 @@ const HeaderWrapper = styled.header`
   position: relative;
   z-index: 2;
   text-align: left;
+  grid-column: span 12;
   width: 100%;
   margin: ${variables.padding.xlarge} 0 ${variables.padding.medium};
 `
