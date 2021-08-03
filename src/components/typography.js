@@ -5,8 +5,8 @@ import variables from "../assets/variables"
 
 const PrimaryHeading = styled.h1`
   font-family: ${variables.typography.titleFont};
-  font-weight: 400;
-  font-size: clamp(3rem, 8vw, 9rem);
+  font-weight: 300;
+  font-size: clamp(3rem, 4vw, 4.8rem);
   line-height: 1.2em;
   color: ${props => props.white ? variables.color.white : variables.color.black};
   padding-bottom: ${variables.padding.small};

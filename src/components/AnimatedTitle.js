@@ -37,6 +37,7 @@ export const letterVariants = {
 const StyledTitleElement = styled(PrimaryHeading)`
   position: relative;
   display: inline-block;
+  font-size: clamp(3rem, 8vw, 9rem);
   max-width: 100%;
   word-break: break-word;
   z-index: 10;
