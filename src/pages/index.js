@@ -110,11 +110,11 @@ const IndexPage = ({ data }) => {
         <meta property="twitter:image" content={meta_card}></meta>
       </Helmet>
       <AnimatePresence>
-        <Header>
+        <Header key="header-1">
           <AnimatedTitle>{RichText.asText(homepage.title.raw)}</AnimatedTitle>
         </Header>
-        <Blob />
-        <Content>
+        <Blob key="blob-1"/>
+        <Content key="content-2">
           <TextWrapper>
             <Paragraph
               key="index-p-1"
@@ -133,10 +133,10 @@ const IndexPage = ({ data }) => {
             </Paragraph>
           </TextWrapper>
         </Content>
-        <Content>
+        <Content key="content-3">
           <ProjectSection projects={projects} />
         </Content>
-        <Content>
+        <Content key="content-4">
           <CalendarSection />
         </Content>
       </AnimatePresence>
