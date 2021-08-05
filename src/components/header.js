@@ -2,12 +2,13 @@ import { Link } from "gatsby"
 import PropTypes from "prop-types"
 import React, { useState } from "react"
 import styled from "styled-components"
+import { lighten, darken } from "polished"
 
 import screen from "../assets/mediaqueries"
 import variables from "../assets/variables"
 
-import Hamburger from './Hamburger'
-import Nav from './Nav'
+import Hamburger from "./Hamburger"
+import Nav from "./Nav"
 
 const Navbar = styled.header`
   display: flex;
@@ -16,35 +17,32 @@ const Navbar = styled.header`
   position: fixed;
   top: 0;
   left: 0;
-  right: 0;
   width: 100%;
-  max-width: 88vw;
-  margin: 0 auto;
-  z-index: 20;
-  padding: ${variables.padding.small} 0;
+  z-index: 5;
+`
 
-  @media ${screen.xLarge} {
-    max-width: 92vw;
-    padding: ${variables.padding.small} 0;
+const Container = styled.div`
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  width: 100%;
+  padding: 1rem;
+  background-color: ${variables.color.white};
+  border-bottom: 1px solid ${lighten(0.7, variables.color.black)};
+
+  @media ${screen.darkMode} {
+    border-color: ${darken(0.5, variables.color.white)};
+    background-color: ${variables.color.black};
   }
 
   @media ${screen.large} {
-    max-width: 100vw;
-    padding: ${variables.padding.xsmall};
     padding-left: max(2rem, env(safe-area-inset-left));
     padding-right: max(2rem, env(safe-area-inset-right));
   }
 `
 
-const Container = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 100%;
-`
-
 const Logo = styled.svg`
-  width: 4.8rem;
+  width: 3.6rem;
   fill: ${variables.color.black};
 
   @media ${screen.small} {
@@ -58,22 +56,53 @@ const Logo = styled.svg`
 
 const LogoLink = styled(Link)`
   font-size: 0;
-  padding: 1.5rem;
-  margin: -1.5rem;
+  margin: 0 auto 0 0;
   border-radius: 5rem;
 `
 
-const Header = ({ siteTitle }) => {
+const NavItems = styled.div`
+  display: flex;
+  align-self: stretch;
+  margin-right: 2rem;
 
-  const [open, setOpen] = useState(false);
+  @media ${screen.large} {
+    display: none;
+  }
+`
+
+const NavLink = styled(Link)`
+  font-family: ${variables.typography.bodyFont};
+  font-size: 1.4rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: ${lighten(0.3, variables.color.black)};
+  text-decoration: none;
+  margin: 0 1rem;
+  line-height: 4rem;
+
+  &:hover {
+    color: ${variables.color.black};
+  }
+
+  @media ${screen.darkMode} {
+    color: ${darken(0.3, variables.color.white)};
+
+    &:hover {
+      color: ${variables.color.white};
+    }
+  }
+`
+
+const Header = ({ siteTitle }) => {
+  const [open, setOpen] = useState(false)
 
   return (
     <Navbar>
       <Container>
-      <LogoLink to="/">
-        <Logo viewBox="0 0 283.5 283.5">
-          <path
-            d="M237.5,38.2c-57.2-52.4-146.5-48.8-198.9,8c-52.6,56.9-49,146.2,8,198.9l0.1,0.1c28,24.6,60.1,37.1,95.8,37.1
+        <LogoLink to="/">
+          <Logo viewBox="0 0 283.5 283.5">
+            <path
+              d="M237.5,38.2c-57.2-52.4-146.5-48.8-198.9,8c-52.6,56.9-49,146.2,8,198.9l0.1,0.1c28,24.6,60.1,37.1,95.8,37.1
 	c11,0,22.3-1.3,34.2-3.8l3-0.6c2.2-0.4,3.6-2.6,3.2-4.8l-1.3-6.1c-0.6-2.2-2.8-3.6-4.9-3.2l-3,0.6c-44.8,9.1-84.2-1-117.2-30.1
 	C5.4,187.2,2.3,107.2,49.3,56C96.3,5,176.4,1.9,228,48.9c46.5,42.7,45.6,104,30.7,143.4c-10,26.4-27.1,45.1-41.6,45.5
 	c-11.6-0.3-33.9-8.4-55.1-59.7c-0.9-2.2-1.7-4.3-2.6-6.5c0.4-1.3,0.7-2.5,0.9-3.5c0.3-1.3,0.7-3.6,1.4-6.5
@@ -84,16 +113,22 @@ const Header = ({ siteTitle }) => {
 	c12.6,0,24.8-13.6,32.7-25.1c3-4.5,5.9-9.1,8.4-13.8c22.6,50.7,48,62,65.6,62.3h0.1h0.1c20.9-0.4,42.4-22,54.9-54.9
 	C288.5,153.7,289.4,85.9,237.5,38.2z M150.5,144.4c-6.8-24.9-10.7-51.3-10.6-72.7c0.3-23,5.4-31.6,8.5-31.6c2.6,0,4.5,0.9,6.1,2.9
 	C165.5,56.8,159.2,103.1,150.5,144.4z"
-          />
-        </Logo>
-        { siteTitle }
-      </LogoLink>
-
-      <Hamburger open={open} setOpen={setOpen}/>
-      <Nav open={open} setOpen={setOpen}/>
+            />
+          </Logo>
+          {siteTitle}
+        </LogoLink>
+        <NavItems>
+          <NavLink to="/work">Work</NavLink>
+          <NavLink to="/resources">Resources</NavLink>
+          <NavLink to="/about">About</NavLink>
+        </NavItems>
+        <Hamburger open={open} setOpen={setOpen} />
       </Container>
+
+      <Nav open={open} setOpen={setOpen} />
     </Navbar>
-)}
+  )
+}
 
 Header.propTypes = {
   siteTitle: PropTypes.string,

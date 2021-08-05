@@ -4,30 +4,39 @@ import { bool, func } from "prop-types"
 import screen from "../assets/mediaqueries"
 import variables from "../assets/variables"
 import { motion } from "framer-motion"
+import { lighten, darken } from "polished"
 
 const Burger = styled.button`
   position: relative;
   appearance: none;
   display: flex;
   align-items: center;
-  padding: 1rem;
-  background-color: transparent;
+  padding: 2rem;
+  margin: -1rem;
+  background-color: ${({ open }) => open ? variables.color.black : variables.color.white};
   border: none;
-  font-family: ${variables.typography.titleFont};
-  font-size: 1.6rem;
+  font-family: ${variables.typography.bodyFont};
+  font-size: 1.4rem;
   text-transform: uppercase;
   letter-spacing: 0.1em;
-  color: ${variables.color.black};
+  color: ${({ open }) => open ? variables.color.white : variables.color.black};
   cursor: pointer;
-  transform: all 0.2s ease;
+  transition: ${({ open }) => open ? 'all 0.3s ease' : 'all 0.3s ease'};  
+  border-left: 1px solid ${lighten(0.7, variables.color.black)};
 
   @media ${screen.darkMode} {
-    color: ${variables.color.white};
+    border-color: ${darken(0.5, variables.color.white)};
+    color: ${({ open }) => open ? variables.color.black : variables.color.white};
+    background-color: ${({ open }) => open ? variables.color.white : variables.color.black};
+  }
+
+  @media ${screen.large} {
+    margin-right: -2rem;
   }
 
   & span {
     position: relative;
-    top: 1px;
+    top: 0;
     display: inline-flex;
     flex-direction: column;
     justify-content: space-around;
@@ -45,11 +54,11 @@ const Burger = styled.button`
       transform: translateY(-50%);
       position: absolute;
       display: block;
-      background-color: ${variables.color.black};
+      background-color: ${({ open }) => open ? variables.color.white : variables.color.black};
       transition: ${({ open }) => open ? 'all 0.6s ease' : 'all 0.2s ease'};
 
       @media ${screen.darkMode} {
-        background-color: ${variables.color.white};
+        background-color: ${({ open }) => open ? variables.color.black : variables.color.white};
       }
     }
 

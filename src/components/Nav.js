@@ -3,6 +3,7 @@ import styled, { keyframes } from "styled-components"
 import { motion } from "framer-motion"
 import { Link } from "gatsby"
 import { bool } from "prop-types"
+import { lighten, darken } from "polished"
 
 import screen from "../assets/mediaqueries"
 import variables from "../assets/variables"
@@ -25,28 +26,35 @@ const Navbar = styled.nav`
   left: 0;
   display: flex;
   justify-content: center;
-  background-image: linear-gradient(70deg, #ae5ae0, #ff5978, #ffcb00, #ff5500);
+  /* background-image: linear-gradient(70deg, #ae5ae0, #ff5978, #ffcb00, #ff5500);
   background-size: 200%;
   background-position: center left;
-  animation: ${bgMovement} 80s ease-in-out infinite both alternate;
+  animation: ${bgMovement} 80s ease-in-out infinite both alternate; */
   transform: translateY(-100%);
+  background-color: ${variables.color.black};
+
+  @media ${screen.darkMode} {
+    background-color: ${variables.color.white};
+  }
 `
 
 const NavItems = styled.ul`
   display: flex;
   flex-direction: column;
   list-style: none;
-  max-width: 160rem;
+  max-width: 88vw;
   width: 100%;
   height: 100%;
   overflow: scroll;
-  padding: ${variables.padding.xlarge} ${variables.padding.large} 0;
+  padding: ${variables.padding.xlarge} 0 0;
 
   @media ${screen.xLarge} {
-    padding: ${variables.padding.xlarge} ${variables.padding.medium} ${variables.padding.medium};
+    max-width: 92vw;
+    padding: ${variables.padding.xlarge} 0 ${variables.padding.medium};
   }
 
   @media ${screen.large} {
+    max-width: 100vw;
     padding: 15rem ${variables.padding.small} ${variables.padding.medium};
     padding-left: max(2rem, env(safe-area-inset-left));
     padding-right: max(2rem, env(safe-area-inset-right));
@@ -59,11 +67,11 @@ const NavItem = styled.li`
   padding: 0;
   margin-bottom: ${variables.padding.medium};
   width: 100%;
-  border-bottom: 1px solid rgba(0,0,0,.5);
+  border-bottom: 1px solid ${darken(0.5, variables.color.white)};
   padding: ${variables.padding.xsmall} 0;
 
   @media ${screen.darkMode} {
-    border-bottom: 1px solid rgba(255,255,255,.5);
+    border-bottom: 1px solid ${lighten(0.7, variables.color.black)};
   }
 `
 
@@ -73,13 +81,12 @@ const NavLink = styled(Link)`
   font-weight: 400;
   font-size: clamp(3rem, 5vw, 4rem); 
   line-height: 1;
-  color: ${props =>
-    props.white ? variables.color.white : variables.color.black};
+  color: ${variables.color.white};
   padding: 0;
   text-decoration: none;
 
   @media ${screen.darkMode} {
-    color: ${variables.color.white};
+    color: ${variables.color.black};
   }
 `
 
