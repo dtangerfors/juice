@@ -3,6 +3,7 @@ import styled from "styled-components"
 import { Link } from "gatsby"
 import { RichText } from "prismic-reactjs"
 import { motion } from "framer-motion"
+import { lighten, darken } from "polished"
 
 import variables from "../assets/variables"
 import screen from "../assets/mediaqueries"
@@ -55,6 +56,12 @@ const WorkLink = styled(Link)`
   display: block;
   text-decoration: none;
   font-size: 0;
+  padding: 0 0 ${variables.padding.xsmall};
+  border-bottom: 1px solid ${lighten(0.7, variables.color.black)};
+
+  @media ${screen.darkMode} {
+    border-color: ${darken(0.5, variables.color.white)};
+  }
 
   &:hover,
   &:active,
