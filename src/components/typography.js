@@ -80,10 +80,23 @@ const TertiaryHeading = styled.h3`
 
 const QuarternaryHeading = styled.h4`
   font-family: ${variables.typography.titleFont};
-  font-weight: 300;
-  font-size: clamp(1.6rem, 4vw, 1.8rem);;
-  text-transform: uppercase;
+  font-weight: 400;
+  font-size: clamp(1.6rem, 4vw, 1.8rem);
   color: ${props => props.white ? variables.color.white : variables.color.black};
+
+  @media ${screen.darkMode} {
+    color: ${variables.color.white};
+  }
+`
+
+const Label = styled.h2`
+  font-family: ${variables.typography.bodyFont};
+  font-weight: 600;
+  font-size: 1.4rem;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: ${props => props.white ? variables.color.white : variables.color.black};
+  padding: 0 0 1em;
 
   @media ${screen.darkMode} {
     color: ${variables.color.white};
@@ -180,6 +193,7 @@ export {
   SecondaryHeading,
   TertiaryHeading,
   QuarternaryHeading,
+  Label,
   Paragraph,
   Lead,
   Information, 

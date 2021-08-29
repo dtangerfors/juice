@@ -185,6 +185,8 @@ const Layout = ({ center, children }) => {
           rel="stylesheet"
         />
         <link rel="stylesheet" href="https://use.typekit.net/xgf4jbu.css" />
+        <link rel="stylesheet" href="https://use.typekit.net/wdd3eii.css" />
+        <link href="https://api.fontshare.com/css?f[]=cabinet-grotesk@300,400&display=swap" rel="stylesheet"></link>
         <meta
           name="viewport"
           content="initial-scale=1, viewport-fit=cover"

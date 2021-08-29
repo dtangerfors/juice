@@ -5,12 +5,12 @@ import { motion } from "framer-motion"
 
 import { RichText, Date } from "prismic-reactjs"
 
-import { Paragraph, Information, QuarternaryHeading } from "../components/typography"
+import { Information, QuarternaryHeading } from "./typography"
 import { transition, fadeUpList, fadeUpItem } from "../assets/animation"
 
 import variables from "../assets/variables"
 
-const ExperienceList = styled.ul`
+const EducationList = styled.ul`
   width: 100%;
   list-style: none;
   display: flex;
@@ -19,7 +19,7 @@ const ExperienceList = styled.ul`
   grid-column: span 8;
 `
 
-const ExperienceItem = styled.li`
+const EducationItem = styled.li`
   width: 100%;
 
 `
@@ -44,48 +44,44 @@ function endDate(date) {
   }
 }
 
-export default ({ work }) => {
-  const jobList = work
+export default ({ education }) => {
 
-  if (!jobList) return null
+  if (!education) return null
 
-  const workContent = jobList.body.map((slice, index) => {
-    if (slice.slice_type === "experience") {
+  const educationContent = education.body.map((slice, index) => {
+    if (slice.slice_type === "education") {
       return (
-        <ExperienceList
-          key={`experience-${index}`}
+        <EducationList
+          key={`Education-${index}`}
           as={motion.ul}
           initial="hidden"
           animate="visible"
           variants={fadeUpList}
         >
           {slice.items.map((job, jobIndex) => (
-        <ExperienceItem
+        <EducationItem
           key={`job-item-${jobIndex}`}
           variants={fadeUpItem}
           as={motion.li}
           custom={jobIndex}
           initial="hidden"
           animate="visible"
-          transition={{ delay: 0.3, ...transition }}
+          transition={transition}
         >
           <QuarternaryHeading as="h3">
-            {RichText.asText(job.job_title.raw)} &mdash;{" "}
-            {RichText.asText(job.work_place.raw)}
+            {RichText.asText(job.degree.raw)}{", "}
+            {RichText.asText(job.university.raw)}
           </QuarternaryHeading>
-          <Paragraph secondary style={{paddingBottom: '.4em'}}>
-            {RichText.asText(job.job_description.raw)}
-          </Paragraph>
           <Information>
             {startDate(job.start_date)} &mdash; {endDate(job.end_date)}
           </Information>
-        </ExperienceItem>
+        </EducationItem>
       ))}
-        </ExperienceList>
+        </EducationList>
       )
     }
     return null
   })
 
-  return <>{workContent}</>
+  return <>{educationContent}</>
 }

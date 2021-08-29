@@ -17,8 +17,8 @@ const colors = {
 }
 
 const typography = {
-    titleFont: '"Cirka", -apple-system, serif',
-    bodyFont: '"Aileron", -apple-system, sans-serif',
+    titleFont: '"Cabinet Grotesk", serif',
+    bodyFont: 'aileron, -apple-system, sans-serif',
     defaultSize: '1.6rem'
 }
 

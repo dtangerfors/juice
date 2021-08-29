@@ -8,8 +8,8 @@ import Layout from "../components/layout"
 import SEO from "../components/seo"
 import {
   PrimaryHeading,
-  SecondaryHeading,
   Lead,
+  Label,
 } from "../components/typography"
 import Experience from "../components/Experience"
 import { blobTransform, blobMovement, blobTransition } from "../components/Blob"
@@ -19,33 +19,13 @@ import screen from "../assets/mediaqueries"
 import { transition, fadeUpList, fadeUp } from "../assets/animation"
 import { IconGithub, IconLinkedIn, IconMail } from "../assets/icons"
 
+import * as S from "../components/about/styles"
+
 import aboutImage from "../images/daniel-about-me-image-1500.jpg"
-
-const AboutWrapper = styled.section`
-  display: grid;
-  grid-template-columns: repeat(12, 1fr);
-  grid-column-gap: ${variables.padding.xsmall};
-  margin: ${variables.padding.xlarge} 0 ${variables.padding.medium};
-
-  @media ${screen.medium} {
-    grid-template-columns: repeat(4, 1fr);
-    margin-top: ${variables.padding.xlarge};
-  }
-`
+import Skills from "../components/about_slices/Skills"
+import Education from "../components/Education"
 
 // Styled compontents
-
-const AboutHeader = styled.header`
-  grid-column-start: 1;
-  grid-column-end: 7;
-  text-align: left;
-
-  @media ${screen.medium} {
-    grid-column-end: 5;
-    position: relative;
-    top: ${variables.padding.xlarge};
-  }
-`
 
 const ContactOptions = styled.address`
   font-style: normal;
@@ -98,37 +78,23 @@ const ContactOption = styled.a`
   }
 `
 
-const PageTitle = styled(PrimaryHeading)`
-  font-size: 1.6rem;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-`
-
 const BlobWrapper = styled.div`
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  top: 0;
-  left: 0;
+  position: relative;
   z-index: -1;
-  overflow: hidden;
 `
 
 const Morph = styled.div`
-  position: absolute;
-  transform: translate(0, -50%);
-  top: 30%;
-  right: -20vh;
+  position: relative;
   z-index: -1;
   min-height: 200px;
   min-width: 200px;
-  width: 90vh;
-  height: 90vh;
+  width: 30rem;
+  height: 30rem;
 
   @media ${screen.medium} {
-    width: 65vh;
-    height: 65vh;
-    top: 7%;
+    width: 40rem;
+    height: 40rem;
+    right: -15%;
   }
 
   &::before {
@@ -147,176 +113,216 @@ const Morph = styled.div`
   }
 `
 
-const SectionHeader = styled.header`
-  grid-column-start: 1;
-  grid-column-end: 13;
-  border-bottom: 1px solid ${variables.color.black};
-  margin-bottom: ${variables.padding.medium};
-
-  @media ${screen.medium} {
-    grid-column-end: 5;
-  }
-
-  @media ${screen.darkMode} {
-    border-bottom: 1px solid ${variables.color.white};
-  }
-`
-
 // Other settings
 
 const blobAnimation = {
-  hidden: { scale: 0.6, y: "-50%", opacity: 0 },
+  hidden: { scale: 0.6, opacity: 0 },
   visible: {
     scale: [0.6, 1.04, 0.98, 1],
     times: [0, 0.7, 0.8, 1],
-    y: "-50%",
     opacity: 1,
   },
 }
 
 // GraphQL
 export const query = graphql`
-query AboutPage {
-  allPrismicAboutPage {
-    edges {
-      node {
-        data {
-          title {
-            raw
-          }
-          sub_title {
-            raw
-          }
-          lead {
-            raw
-          }
-          body {
-            ... on PrismicAboutPageBodyExperience {
-              id
-              items {
-                job_description {
-                  raw
+  query AboutPage {
+    allPrismicAboutPage {
+      edges {
+        node {
+          data {
+            title {
+              raw
+            }
+            sub_title {
+              raw
+            }
+            lead {
+              raw
+            }
+            body {
+              ... on PrismicAboutPageBodyExperience {
+                id
+                items {
+                  job_description {
+                    raw
+                  }
+                  job_title {
+                    raw
+                  }
+                  end_date
+                  start_date
+                  work_place {
+                    raw
+                  }
                 }
-                job_title {
-                  raw
-                }
-                end_date
-                start_date
-                work_place {
-                  raw
+                slice_type
+              }
+              ... on PrismicAboutPageBodyEducation {
+                id
+                slice_type
+                items {
+                  end_date
+                  start_date
+                  university {
+                    raw
+                  }
+                  degree {
+                    raw
+                  }
                 }
               }
-              slice_type
+              ... on PrismicAboutPageBodySkills {
+                id
+                slice_type
+                primary {
+                  heading {
+                    text
+                  }
+                  skills {
+                    raw
+                  }
+                }
+              }
             }
           }
         }
       }
     }
   }
-}
-
 `
 
 export default function About({ data }) {
-  const prismicContent = data.allPrismicAboutPage.edges.slice(0, 1).pop();
-  if (!prismicContent) return null;
-  const document = prismicContent.node.data;
+  const prismicContent = data.allPrismicAboutPage.edges.slice(0, 1).pop()
+  if (!prismicContent) return null
+  const document = prismicContent.node.data
 
   return (
     <Layout>
       <SEO title="About me" />
-      <BlobWrapper>
-        <Morph
-          as={motion.div}
-          initial="hidden"
-          animate="visible"
-          variants={blobAnimation}
-          transition={blobTransition}
-        />
-      </BlobWrapper>
-      <AboutWrapper>
-        <AboutHeader
+      <S.Wrapper>
+        <S.Header
           as={motion.header}
           initial="hidden"
           animate="visible"
           variants={fadeUpList}
         >
-          <PageTitle
-            as={motion.h1}
-            variants={fadeUp}
-            initial="hidden"
-            animate="visible"
-            transition={{ delay: 0.1, ...transition }}
-          >
-            This is me / {RichText.asText(document.title.raw)}
-          </PageTitle>
-          <PrimaryHeading
-            as={motion.h2}
-            variants={fadeUp}
-            initial="hidden"
-            animate="visible"
-            transition={{ delay: 0.2, ...transition }}
-          >
-            {RichText.asText(document.sub_title.raw)}
-          </PrimaryHeading>
-          <Lead
-            as={motion.p}
-            variants={fadeUp}
-            initial="hidden"
-            animate="visible"
-            transition={{ delay: 0.3, ...transition }}
-          >
-            {RichText.asText(document.lead.raw)}
-          </Lead>
-          <ContactOptions
-            as={motion.address}
-            variants={fadeUpList}
-            initial="hidden"
-            animate="visible"
-            transition={{ delay: 0.4, ...transition }}
-          >
-            <ContactOption
-              as={motion.a}
+          <S.HeaderContent>
+            <Label
+              as={motion.h1}
               variants={fadeUp}
               initial="hidden"
               animate="visible"
               transition={{ delay: 0.1, ...transition }}
-              href="https://github.com/dtangerfors"
-              target="_blank"
-              rel="noopener noreferrer"
             >
-              <IconGithub /> <span>@dtangerfors</span>
-            </ContactOption>
-            <ContactOption
-            as={motion.a}
-            variants={fadeUp}
-            initial="hidden"
-            animate="visible"
-            transition={{ delay: 0.2, ...transition }}
-              href="https://www.linkedin.com/in/daniel-t%C3%A4ngerfors/"
-              target="_blank"
-              rel="noopener noreferrer"
+              {RichText.asText(document.title.raw)}
+            </Label>
+            <PrimaryHeading
+              as={motion.h2}
+              variants={fadeUp}
+              initial="hidden"
+              animate="visible"
+              transition={{ delay: 0.2, ...transition }}
             >
-              <IconLinkedIn /> <span>Daniel Tängerfors</span>
-            </ContactOption>
-            <ContactOption
-            as={motion.a}
-            variants={fadeUp}
-            initial="hidden"
-            animate="visible"
-            transition={{ delay: 0.3, ...transition }}
-             href="mailto:daniel@dtangerfors.se">
-              <IconMail /> <span>daniel@dtangerfors.se</span>
-            </ContactOption>
-          </ContactOptions>
-        </AboutHeader>
-      </AboutWrapper>
-      <AboutWrapper>
-        <SectionHeader>
-          <SecondaryHeading>Experience</SecondaryHeading>
-        </SectionHeader>
-        <Experience work={document} />
-      </AboutWrapper>
+              {RichText.asText(document.sub_title.raw)}
+            </PrimaryHeading>
+            <Lead
+              as={motion.p}
+              variants={fadeUp}
+              initial="hidden"
+              animate="visible"
+              transition={{ delay: 0.3, ...transition }}
+            >
+              {RichText.asText(document.lead.raw)}
+            </Lead>
+            <ContactOptions
+              as={motion.address}
+              variants={fadeUpList}
+              initial="hidden"
+              animate="visible"
+              transition={{ delay: 0.4, ...transition }}
+            >
+              <ContactOption
+                as={motion.a}
+                variants={fadeUp}
+                initial="hidden"
+                animate="visible"
+                transition={{ delay: 0.1, ...transition }}
+                href="https://github.com/dtangerfors"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <IconGithub /> <span>@dtangerfors</span>
+              </ContactOption>
+              <ContactOption
+                as={motion.a}
+                variants={fadeUp}
+                initial="hidden"
+                animate="visible"
+                transition={{ delay: 0.2, ...transition }}
+                href="https://www.linkedin.com/in/daniel-t%C3%A4ngerfors/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <IconLinkedIn /> <span>Daniel Tängerfors</span>
+              </ContactOption>
+              <ContactOption
+                as={motion.a}
+                variants={fadeUp}
+                initial="hidden"
+                animate="visible"
+                transition={{ delay: 0.3, ...transition }}
+                href="mailto:daniel@dtangerfors.se"
+              >
+                <IconMail /> <span>daniel@dtangerfors.se</span>
+              </ContactOption>
+            </ContactOptions>
+          </S.HeaderContent>
+          <BlobWrapper>
+            <Morph
+              as={motion.div}
+              initial="hidden"
+              animate="visible"
+              variants={blobAnimation}
+              transition={blobTransition}
+            />
+          </BlobWrapper>
+        </S.Header>
+        <S.FlexWrapper>
+          <S.Col60>
+          <Label
+              key="experience-label"
+              as={motion.h2}
+              variants={fadeUp}
+              initial="hidden"
+              animate="visible"
+              transition={{ delay: 0.1, ...transition }}
+              >Experience</Label>
+            <Experience work={document} />
+          </S.Col60>
+          <S.Col40>
+            <div>
+              <Label
+              key="edu-label"
+              as={motion.h2}
+              variants={fadeUp}
+              initial="hidden"
+              animate="visible"
+              transition={{ delay: 0.1, ...transition }}
+              >Education</Label>
+              <Education education={document} />
+            </div>
+
+            {document.body.map((slice, sliceIndex) => {
+              if (slice.slice_type === "skills") {
+                return <Skills data={slice} key={`skill-${sliceIndex}`} />
+              }
+
+              return null
+            })}
+          </S.Col40>
+        </S.FlexWrapper>
+      </S.Wrapper>
     </Layout>
   )
 }

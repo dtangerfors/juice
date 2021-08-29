@@ -81,6 +81,7 @@ export const AnimatedTitle = props => {
             position: "relative",
             display: "inline-block",
             width: "auto",
+            fontWeight: '100'
           }} // Position elements
           variants={letterVariants}
         >
