@@ -40,6 +40,10 @@ const MainWrapper = styled.main`
   display: grid;
   place-items: center;
 
+  & > * {
+    min-width: 0;
+  }
+
   @media ${screen.xLarge} {
     max-width: 92vw;
     padding: 0 0 ${variables.padding.large};
