@@ -143,7 +143,7 @@ const Project = ({ project }) => {
           <ComingSoon>Coming Soon</ComingSoon>
         </Figure>
         <Title>
-          <ButtonLinkArrow>&rarr;</ButtonLinkArrow>
+          <ButtonLinkArrow>&#187;</ButtonLinkArrow>
           {RichText.asText(project.data.title.raw)}
         </Title>
         <Subtitle>{RichText.asText(project.data.subtitle.raw)}</Subtitle>
@@ -159,7 +159,7 @@ const Project = ({ project }) => {
           />
         </Figure>
         <Title>
-          <ButtonLinkArrow>&rarr;</ButtonLinkArrow>
+          <ButtonLinkArrow>&#187;</ButtonLinkArrow>
           {RichText.asText(project.data.title.raw)}
         </Title>
         <Subtitle>{RichText.asText(project.data.subtitle.raw)}</Subtitle>

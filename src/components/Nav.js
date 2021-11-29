@@ -131,7 +131,7 @@ const Nav = ({ open }) => {
           transition={{ delay: open ? 0.8 : 0.6, type: "spring", stiffness: 75, duration: 0.1 }}
         >
           <NavLink to="/work" title="View my recent work">
-          <ButtonLinkArrow>&rarr;</ButtonLinkArrow>Work
+          <ButtonLinkArrow>&#187;</ButtonLinkArrow>Work
           </NavLink>
         </NavItem>
         <NavItem
@@ -143,7 +143,7 @@ const Nav = ({ open }) => {
           transition={{ delay: open ? 0.7 : 0.4, type: "spring", stiffness: 75, duration: 0.1 }}
         >
           <NavLink to="/resources" title="Great resources for design & code">
-          <ButtonLinkArrow>&rarr;</ButtonLinkArrow>Resources
+          <ButtonLinkArrow>&#187;</ButtonLinkArrow>Resources
           </NavLink>
         </NavItem>
         <NavItem
@@ -155,7 +155,7 @@ const Nav = ({ open }) => {
           transition={{ delay: open ? 0.6 : 0.2, type: "spring", stiffness: 75, duration: 0.1 }}
         >
           <NavLink to="/about" title="Learn more about me">
-          <ButtonLinkArrow>&rarr;</ButtonLinkArrow>About
+          <ButtonLinkArrow>&#187;</ButtonLinkArrow>About
           </NavLink>
         </NavItem>
       </NavItems>

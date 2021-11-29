@@ -50,7 +50,7 @@ const PrimaryHeading = styled.h1`
 
 const SecondaryHeading = styled.h2`
   font-family: ${variables.typography.titleFont};
-  font-weight: 300;
+  font-weight: 400;
   font-size: clamp(2.5rem, 4vw, 3.6rem);
   line-height: 1em;
   padding: 1.2rem 0 2.4rem;
@@ -67,7 +67,7 @@ const SecondaryHeading = styled.h2`
 
 const TertiaryHeading = styled.h3`
   font-family: ${variables.typography.titleFont};
-  font-weight: 300;
+  font-weight: 400;
   font-size: clamp(2rem, 4vw, 2.4rem);;
   line-height: 1em;
   padding-bottom: 1.8rem;

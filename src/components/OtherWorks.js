@@ -111,7 +111,7 @@ const Project = ({ project }) => {
     <WorkLink to={project.url}>
       <WorkText>
         <Title>
-          <ButtonLinkArrow>&rarr;</ButtonLinkArrow>
+          <ButtonLinkArrow>&#187;</ButtonLinkArrow>
           {RichText.asText(project.data.title.raw)}
         </Title>
         <Subtitle>{RichText.asText(project.data.subtitle.raw)}</Subtitle>
