@@ -17,7 +17,7 @@ const colors = {
 }
 
 const typography = {
-    titleFont: '"Cabinet Grotesk", serif',
+    titleFont: 'swear-display, serif',
     bodyFont: 'aileron, -apple-system, sans-serif',
     defaultSize: '1.6rem'
 }
