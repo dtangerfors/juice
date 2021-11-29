@@ -20,7 +20,6 @@ import { AnimatedTitle } from "../components/AnimatedTitle"
 import ProjectSection from "../components/Project"
 
 import meta_card from "../images/juice-meta-card.jpg"
-import CalendarSection from "../components/CalendarSection"
 
 // Styled Components
 const Header = styled.header`
@@ -134,9 +133,6 @@ const IndexPage = ({ data }) => {
         </Content>
         <Content key="content-3">
           <ProjectSection projects={projects} />
-        </Content>
-        <Content key="content-4">
-          <CalendarSection />
         </Content>
       </AnimatePresence>
     </Layout>
